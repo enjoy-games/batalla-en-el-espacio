@@ -1,5 +1,7 @@
 package juego;
 
+import juego.elementos.NaveJugador;
+import juego.graficos.Graficos;
 import juego.tipos_de_datos.EstadoPartida;
 
 /**
@@ -29,6 +31,7 @@ public class Juego {
 	 * 
 	 */
 	public static EstadoPartida estado;
+	public static NaveJugador nave_jugador;
 
 	// TODO
 
@@ -44,6 +47,8 @@ public class Juego {
 		Juego.estado = EstadoPartida.menu_principal;
 
 		// Elementos de juego.
+		Juego.nave_jugador = new NaveJugador(200 - 40, 200 - 40, 40, 40, 8,
+				Graficos.nave_jugador);
 		// TODO
 	}
 
