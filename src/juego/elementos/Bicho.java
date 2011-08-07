@@ -69,7 +69,7 @@ public final class Bicho extends ObjetoMovil {
 				super.esquina_superior_izquierda.x_pos,
 				super.esquina_superior_izquierda.y_pos, ejecutable);
 
-		if (this.imagen_actual < this.imagen.length) {
+		if (this.imagen_actual < this.imagen.length - 1) {
 			this.imagen_actual += 1;
 		} else {
 			this.imagen_actual = 0;
