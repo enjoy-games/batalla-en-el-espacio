@@ -54,21 +54,23 @@ public class Graficos {
 				Graficos.directorio_img + "nave_jugador.gif");
 
 		// Enemigos
+		Image imagen1a = ejecutable.getImage(ejecutable.getCodeBase(),
+				Graficos.directorio_img + "bicho1a.gif");
+		Image imagen1b = ejecutable.getImage(ejecutable.getCodeBase(),
+				Graficos.directorio_img + "bicho1b.gif");
+		Image imagen2a = ejecutable.getImage(ejecutable.getCodeBase(),
+				Graficos.directorio_img + "bicho2a.gif");
+		Image imagen2b = ejecutable.getImage(ejecutable.getCodeBase(),
+				Graficos.directorio_img + "bicho2b.gif");
+		Image aux_imagen1, aux_imagen2;
 		for (int i = 0; i < Graficos.duplicacion; i++) {
-			Image imagen1a = ejecutable.getImage(ejecutable.getCodeBase(),
-					Graficos.directorio_img + "bicho1a.gif");
-			Image imagen1b = ejecutable.getImage(ejecutable.getCodeBase(),
-					Graficos.directorio_img + "bicho1b.gif");
-			Image imagen2a = ejecutable.getImage(ejecutable.getCodeBase(),
-					Graficos.directorio_img + "bicho2a.gif");
-			Image imagen2b = ejecutable.getImage(ejecutable.getCodeBase(),
-					Graficos.directorio_img + "bicho2b.gif");
-			Image aux_imagen1, aux_imagen2;
-
+			// Se aumenta el numero de sprites por segundo.
 			if (i < Graficos.duplicacion / 2) {
+				// La primera mitad se carga con el spriteA.
 				aux_imagen1 = imagen1a;
 				aux_imagen2 = imagen2a;
 			} else {
+				// La segunda mitad se carga con el spriteB.
 				aux_imagen1 = imagen1b;
 				aux_imagen2 = imagen2b;
 			}
@@ -91,7 +93,8 @@ public class Graficos {
 		 * Dibuja la pantalla del menu principal.
 		 */
 		g.setColor(Color.white);
-		g.drawString("Pulsa el boton nuevo para comenzar la partida.", 100, 100);
+		g.drawString("Pulsa el boton 'Nuevo' para comenzar la partida.", 100,
+				100);
 	}
 
 	public static void mostrar_juego(Graphics g, ImageObserver ejecutable) {
@@ -99,6 +102,7 @@ public class Graficos {
 		 * Dibuja los elementos del juego.
 		 */
 		Juego.nave_jugador.dibujar(g, ejecutable);
+
 		if (Juego.nave_jugador.disparo != null) {
 			Juego.nave_jugador.disparo.dibujar(g);
 		}
@@ -114,7 +118,7 @@ public class Graficos {
 		 * Dibuja la pantalla de pausa.
 		 */
 		g.setColor(Color.white);
-		g.drawString("Juego en pausa. Pulse el boton reanudar.", 100, 100);
+		g.drawString("Juego en pausa. Pulse el boton 'Reanudar'.", 100, 100);
 	}
 
 	public static void mostrar_clasificacion(Graphics g) {

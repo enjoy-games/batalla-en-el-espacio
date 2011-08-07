@@ -44,37 +44,36 @@ public abstract class ObjetoMovil extends ObjetoEstatico {
 
 		if (this.estado == EstadoObjetoMovil.left
 				|| this.estado == EstadoObjetoMovil.upleft
-				|| this.estado == EstadoObjetoMovil.downleft) { // Si se mueve
-																// hacia la
-																// izquierda...
+				|| this.estado == EstadoObjetoMovil.downleft) {
+			// Si se mueve hacia la izquierda...
 			sentido_x = -1;
 		} else if (this.estado == EstadoObjetoMovil.right
 				|| this.estado == EstadoObjetoMovil.upright
-				|| this.estado == EstadoObjetoMovil.downright) { // Si se mueve
-																	// hacia la
-																	// derecha...
+				|| this.estado == EstadoObjetoMovil.downright) {
+			// Si se mueve hacia la derecha...
 			sentido_x = 1;
-		} else { // Si no se mueve horizontalmente...
+		} else {
+			// Si no se mueve horizontalmente...
 			sentido_x = 0;
 		}
 
 		if (this.estado == EstadoObjetoMovil.up
 				|| this.estado == EstadoObjetoMovil.upleft
-				|| this.estado == EstadoObjetoMovil.upright) { // Si se mueve
-																// hacia
-																// arriba...
+				|| this.estado == EstadoObjetoMovil.upright) {
+			// Si se mueve hacia arriba...
 			sentido_y = -1;
 		} else if (this.estado == EstadoObjetoMovil.down
 				|| this.estado == EstadoObjetoMovil.downleft
-				|| this.estado == EstadoObjetoMovil.downright) { // Si se mueve
-																	// hacia
-																	// abajo...
+				|| this.estado == EstadoObjetoMovil.downright) {
+			// Si se mueve hacia abajo...
 			sentido_y = 1;
-		} else { // Si no se mueve verticalmente...
+		} else {
+			// Si no se mueve verticalmente...
 			sentido_y = 0;
 		}
 
-		if (this.estado == EstadoObjetoMovil.parado) { // Si no se mueve...
+		if (this.estado == EstadoObjetoMovil.parado) {
+			// Si no se mueve...
 			sentido_x = 0;
 			sentido_y = 0;
 		}

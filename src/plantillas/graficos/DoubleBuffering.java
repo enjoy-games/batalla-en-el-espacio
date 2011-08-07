@@ -66,8 +66,11 @@ public abstract class DoubleBuffering extends Applet implements Runnable {
 		Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
 
 		Thread thisThread = Thread.currentThread();
-		while (thread == thisThread) { // Bucle de ejecucion del hilo (Sera el
-										// bucle de juego).
+
+		while (thread == thisThread) {
+			// Bucle de ejecucion del hilo.
+
+			// Bucle de juego.
 			this.juego();
 			repaint();
 
@@ -81,17 +84,21 @@ public abstract class DoubleBuffering extends Applet implements Runnable {
 		}
 	}
 
-	public abstract void init(); // Inicio de ejecucion del applet.
+	// Inicio de ejecucion del applet.
+	public abstract void init();
 
-	public abstract void paint(Graphics g); // Metodo de dibujar graficos del
-											// applet.
+	// Metodo de dibujar graficos del applet.
+	public abstract void paint(Graphics g);
 
 	public final void update(Graphics g) {
 		/*
 		 * Metodo de actualizacion de la pantalla. Se sobrecarga para definir la
 		 * tecnica doble buffering.
 		 */
-		if (this.dbImage == null) { // Si aun no se ha creado el buffer...
+
+		if (this.dbImage == null) {
+			// Si aun no se ha creado el buffer...
+
 			// Se crea.
 			this.dbImage = createImage(getSize().width, getSize().height);
 			this.dbg = this.dbImage.getGraphics();
@@ -107,6 +114,6 @@ public abstract class DoubleBuffering extends Applet implements Runnable {
 		g.drawImage(this.dbImage, 0, 0, this);
 	}
 
-	public abstract void juego(); // Permite ejecutar instrucciones en el bucle
-									// de juego al heredar de esta clase.
+	// Bucle de juego.
+	public abstract void juego();
 }

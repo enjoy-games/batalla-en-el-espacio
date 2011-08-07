@@ -52,6 +52,7 @@ public class Juego {
 		Juego.estado = EstadoPartida.menu_principal;
 
 		// Elementos de juego.
+
 		Juego.nave_jugador = new NaveJugador(200 - 20, 400 - 40, 40, 40, 8,
 				Graficos.nave_jugador);
 
@@ -90,7 +91,6 @@ public class Juego {
 		/*
 		 * Pausa la partida o la reanuda.
 		 */
-		// Solo es valido si esta en una partida.
 		if (Juego.estado == EstadoPartida.jugando
 				|| Juego.estado == EstadoPartida.pausa) {
 			if (pausar) {

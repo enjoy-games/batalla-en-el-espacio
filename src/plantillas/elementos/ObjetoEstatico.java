@@ -38,5 +38,6 @@ public abstract class ObjetoEstatico {
 	 * Metodos
 	 * 
 	 */
+	// Cada elemento define su dibujo.
 	public abstract void dibujar(Graphics g);
 }

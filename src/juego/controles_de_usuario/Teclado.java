@@ -3,7 +3,6 @@ package juego.controles_de_usuario;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import plantillas.menu.Menu;
 import plantillas.tipos_de_datos.EstadoObjetoMovil;
 
 import juego.Juego;
@@ -40,18 +39,23 @@ public final class Teclado implements KeyListener {
 		/*
 		 * Evento de teclado al presionar una tecla.
 		 */
-		// Solo se permite el control si esta en la partida y no esta en pausa.
 		if (Juego.estado == EstadoPartida.jugando) {
-			// Si pulsa la tecla de flecha izquierda...
+
 			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+				// Si pulsa la tecla de flecha izquierda...
+
 				Juego.nave_jugador.estado = EstadoObjetoMovil.left;
-				// Si pulsa la tecla de flecha derecha...
 			} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+				// Si pulsa la tecla de flecha derecha...
+
 				Juego.nave_jugador.estado = EstadoObjetoMovil.right;
 			} else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 				// Si pulsa la tecla espacio...
+
 				Juego.nave_jugador.disparar();
-			} else { // Si ha pulsado otra tecla...
+			} else {
+				// Si ha pulsado otra tecla...
+
 				Juego.nave_jugador.estado = EstadoObjetoMovil.parado;
 			}
 		}
@@ -62,7 +66,6 @@ public final class Teclado implements KeyListener {
 		/*
 		 * Evento de teclado al soltar una tecla.
 		 */
-		// Si la partida esta en curso...
 		if (Juego.estado == EstadoPartida.jugando) {
 			Juego.nave_jugador.estado = EstadoObjetoMovil.parado;
 		}

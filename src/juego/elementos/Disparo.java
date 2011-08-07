@@ -6,6 +6,26 @@ import java.awt.Graphics;
 import plantillas.elementos.ObjetoMovil;
 import plantillas.elementos.PuntoMovil;
 
+/**
+ * 
+ * Implementacion de disparo.
+ * 
+ * Copyright (C) 2011 Sergio Lindo
+ * 
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>
+ * 
+ */
 public final class Disparo extends ObjetoMovil {
 	Disparo(int x_pos, int y_pos, int ancho, int alto, int velocidad_y,
 			Color color) {

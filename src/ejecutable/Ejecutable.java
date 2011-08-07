@@ -72,11 +72,12 @@ public final class Ejecutable extends DoubleBuffering {
 	@Override
 	public void juego() {
 		/*
-		 * Este metodo es llamado en el metodo heredado de
-		 * plantilla.graficos.DoubleBuffering.
+		 * Bucle de juego.
 		 */
 		if (Juego.estado == EstadoPartida.jugando) {
+
 			Juego.nave_jugador.movimiento();
+
 			if (Juego.nave_jugador.disparo != null) {
 				Juego.nave_jugador.disparo.movimiento();
 			}

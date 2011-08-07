@@ -85,18 +85,21 @@ public final class NaveJugador extends ObjetoMovil {
 		int next_velocidad_x = left - Juego.limite_izquierdo();
 		int next_velocidad_y = Juego.limite_derecho() - right;
 
-		// Si se mueve hacia la izquierda...
 		if (super.estado == EstadoObjetoMovil.left) {
-			// Si colisiona con el limite izquierdo...
+			// Si se mueve hacia la izquierda...
+
 			if (next_left < Juego.limite_izquierdo()) {
+				// Si colisiona con el limite izquierdo...
+
 				// Frena.
 				super.esquina_superior_izquierda.velocidad_x = next_velocidad_x;
 			}
-
-			// Si se mueve hacia la derecha...
 		} else if (super.estado == EstadoObjetoMovil.right) {
-			// Si colisiona con la barra derecha...
+			// Si se mueve hacia la derecha...
+
 			if (next_right > Juego.limite_derecho()) {
+				// Si colisiona con el limite derecho...
+
 				// Frena.
 				super.esquina_superior_izquierda.velocidad_x = next_velocidad_y;
 			}

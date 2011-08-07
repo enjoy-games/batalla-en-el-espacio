@@ -30,8 +30,8 @@ public class Menu {
 	 * Variables
 	 * 
 	 */
-	public static Button btnNuevo = new Button("Nuevo"), btnPausa = new Button(
-			"Pausa");
+	public static Button btnNuevo = new Button("Nuevo");
+	public static Button btnPausa = new Button("Pausa");
 
 	/**
 	 * 
@@ -39,6 +39,9 @@ public class Menu {
 	 * 
 	 */
 	public static void agregar_menu(Ejecutable ejecutable) {
+		/*
+		 * Agrega la barra de menu al applet.
+		 */
 		int x = 5, y = 5, ancho = 70, alto = 23;
 
 		btnNuevo.setLocation(x, y);

@@ -64,8 +64,8 @@ public final class MotorColisiones {
 		if (o1_verticeA == true || o1_verticeB == true || o1_verticeC == true
 				|| o1_verticeD == true || o2_verticeA == true
 				|| o2_verticeB == true || o2_verticeC == true
-				|| o2_verticeD == true) { // Si hay colision de los vertices de
-											// las figuras...
+				|| o2_verticeD == true) {
+			// Si hay colision de los vertices de las figuras...
 			colision = true;
 		}
 
@@ -79,29 +79,16 @@ public final class MotorColisiones {
 		boolean colision = false;
 
 		// Para evitar tangencias agrego un "borde" de 1 pixel a la figura.
-		if (x >= figura.esquina_superior_izquierda.x_pos - 1) { // Si el punto
-																// esta a la
-																// derecha del
-																// vertice A...
+		if (x >= figura.esquina_superior_izquierda.x_pos - 1) {
+			// Si el punto esta a la derecha del vertice A...
 			if (x <= figura.esquina_superior_izquierda.x_pos
-					+ figura.esquina_superior_izquierda.y_pos + 1) { // Si el
-																		// punto
-																		// esta
-																		// a la
-																		// izquierda
-																		// del
-																		// vertice
-																		// B...
-				if (y >= figura.esquina_superior_izquierda.y_pos - 1) { // Si el
-																		// punto
-																		// esta
-																		// debajo
-																		// del
-																		// vertice
-																		// A...
+					+ figura.esquina_superior_izquierda.y_pos + 1) {
+				// Si el punto esta a la izquierda del vertice B...
+				if (y >= figura.esquina_superior_izquierda.y_pos - 1) {
+					// Si el punto esta debajo del vertice A...
 					if (y <= figura.esquina_superior_izquierda.y_pos
-							+ figura.alto + 1) { // Si el punto esta encima del
-													// vertice D...
+							+ figura.alto + 1) {
+						// Si el punto esta encima del vertice D...
 						colision = true;
 					}
 				}
