@@ -99,6 +99,10 @@ public class Graficos {
 		 * Dibuja los elementos del juego.
 		 */
 		Juego.nave_jugador.dibujar(g, ejecutable);
+		if (Juego.nave_jugador.disparo != null) {
+			Juego.nave_jugador.disparo.dibujar(g);
+		}
+
 		for (int i = 0; i < Juego.bichos.length; i++) {
 			Juego.bichos[i].dibujar(g, ejecutable);
 		}

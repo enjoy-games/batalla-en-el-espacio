@@ -3,6 +3,7 @@ package juego.controles_de_usuario;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import plantillas.menu.Menu;
 import plantillas.tipos_de_datos.EstadoObjetoMovil;
 
 import juego.Juego;
@@ -47,6 +48,9 @@ public final class Teclado implements KeyListener {
 				// Si pulsa la tecla de flecha derecha...
 			} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 				Juego.nave_jugador.estado = EstadoObjetoMovil.right;
+			} else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+				// Si pulsa la tecla espacio...
+				Juego.nave_jugador.disparar();
 			} else { // Si ha pulsado otra tecla...
 				Juego.nave_jugador.estado = EstadoObjetoMovil.parado;
 			}

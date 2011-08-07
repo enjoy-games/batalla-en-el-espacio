@@ -1,5 +1,6 @@
 package juego.elementos;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.ImageObserver;
@@ -36,6 +37,7 @@ public final class NaveJugador extends ObjetoMovil {
 	 * 
 	 */
 	public Image imagen;
+	public Disparo disparo;
 
 	/**
 	 * 
@@ -109,7 +111,16 @@ public final class NaveJugador extends ObjetoMovil {
 	}
 
 	public void disparar() {
-		// TODO
+		if (this.disparo != null
+				&& this.disparo.esquina_superior_izquierda.y_pos <= 0) {
+			this.disparo = null;
+		}
+
+		if (this.disparo == null) {
+			this.disparo = new Disparo(this.esquina_superior_izquierda.x_pos
+					+ this.ancho / 2, this.esquina_superior_izquierda.y_pos, 3,
+					10, 10, Color.white);
+		}
 	}
 
 	public void destruir() {

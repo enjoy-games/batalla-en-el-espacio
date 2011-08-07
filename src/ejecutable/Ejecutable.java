@@ -77,6 +77,9 @@ public final class Ejecutable extends DoubleBuffering {
 		 */
 		if (Juego.estado == EstadoPartida.jugando) {
 			Juego.nave_jugador.movimiento();
+			if (Juego.nave_jugador.disparo != null) {
+				Juego.nave_jugador.disparo.movimiento();
+			}
 			// TODO
 		}
 	}
