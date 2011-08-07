@@ -37,7 +37,9 @@ public class Graficos {
 	 */
 	private static final String directorio_img = "juego/img/";
 	public static Image nave_jugador;
-	public static Image[] bicho1 = new Image[2], bicho2 = new Image[2];
+	public static int duplicacion = 8;
+	public static Image[] bicho1 = new Image[duplicacion],
+			bicho2 = new Image[duplicacion];
 
 	/**
 	 * 
@@ -50,14 +52,30 @@ public class Graficos {
 		 */
 		Graficos.nave_jugador = ejecutable.getImage(ejecutable.getCodeBase(),
 				Graficos.directorio_img + "nave_jugador.gif");
-		Graficos.bicho1[0] = ejecutable.getImage(ejecutable.getCodeBase(),
-				Graficos.directorio_img + "bicho1a.gif");
-		Graficos.bicho1[1] = ejecutable.getImage(ejecutable.getCodeBase(),
-				Graficos.directorio_img + "bicho1b.gif");
-		Graficos.bicho2[0] = ejecutable.getImage(ejecutable.getCodeBase(),
-				Graficos.directorio_img + "bicho2a.gif");
-		Graficos.bicho2[1] = ejecutable.getImage(ejecutable.getCodeBase(),
-				Graficos.directorio_img + "bicho2b.gif");
+
+		// Enemigos
+		for (int i = 0; i < Graficos.duplicacion; i++) {
+			Image imagen1a = ejecutable.getImage(ejecutable.getCodeBase(),
+					Graficos.directorio_img + "bicho1a.gif");
+			Image imagen1b = ejecutable.getImage(ejecutable.getCodeBase(),
+					Graficos.directorio_img + "bicho1b.gif");
+			Image imagen2a = ejecutable.getImage(ejecutable.getCodeBase(),
+					Graficos.directorio_img + "bicho2a.gif");
+			Image imagen2b = ejecutable.getImage(ejecutable.getCodeBase(),
+					Graficos.directorio_img + "bicho2b.gif");
+			Image aux_imagen1, aux_imagen2;
+
+			if (i < Graficos.duplicacion / 2) {
+				aux_imagen1 = imagen1a;
+				aux_imagen2 = imagen2a;
+			} else {
+				aux_imagen1 = imagen1b;
+				aux_imagen2 = imagen2b;
+			}
+
+			Graficos.bicho1[i] = aux_imagen1;
+			Graficos.bicho2[i] = aux_imagen2;
+		}
 	}
 
 	public static void mostrar_fondo(Graphics g) {
@@ -81,6 +99,9 @@ public class Graficos {
 		 * Dibuja los elementos del juego.
 		 */
 		Juego.nave_jugador.dibujar(g, ejecutable);
+		for (int i = 0; i < Juego.bichos.length; i++) {
+			Juego.bichos[i].dibujar(g, ejecutable);
+		}
 		// TODO - Juego.elemento.dibujar(g);
 	}
 
