@@ -5,6 +5,7 @@ import java.awt.Graphics;
 
 import plantillas.elementos.ObjetoMovil;
 import plantillas.elementos.PuntoMovil;
+import plantillas.tipos_de_datos.EstadoObjetoMovil;
 
 /**
  * 
@@ -28,7 +29,7 @@ import plantillas.elementos.PuntoMovil;
  */
 public final class Disparo extends ObjetoMovil {
 	Disparo(int x_pos, int y_pos, int ancho, int alto, int velocidad_y,
-			Color color) {
+			Color color, EstadoObjetoMovil estado) {
 		super.esquina_superior_izquierda = new PuntoMovil();
 		super.esquina_superior_izquierda.x_pos = x_pos;
 		super.esquina_superior_izquierda.y_pos = y_pos;
@@ -37,12 +38,22 @@ public final class Disparo extends ObjetoMovil {
 		super.ancho = ancho;
 		super.alto = alto;
 		super.color = color;
+		super.estado = estado;
 	}
 
 	public void movimiento() {
-		if (this.esquina_superior_izquierda.y_pos > 0) {
-			this.esquina_superior_izquierda.y_pos -= this.esquina_superior_izquierda.velocidad_y;
+		int sentido = 0;
+
+		if (super.estado == EstadoObjetoMovil.up
+				&& this.esquina_superior_izquierda.y_pos > 0) {
+			sentido = -1;
+		} else if (super.estado == EstadoObjetoMovil.down
+				&& this.esquina_superior_izquierda.y_pos < 400) {
+			sentido = 1;
 		}
+
+		this.esquina_superior_izquierda.y_pos += this.esquina_superior_izquierda.velocidad_y
+				* sentido;
 	}
 
 	@Override
