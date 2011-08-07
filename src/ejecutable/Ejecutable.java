@@ -59,11 +59,11 @@ public final class Ejecutable extends DoubleBuffering {
 		Graficos.mostrar_fondo(g);
 
 		if (Juego.estado == EstadoPartida.menu_principal) {
-			Graficos.mostrar_menu_principal(g, this);
+			Graficos.mostrar_menu_principal(g);
 		} else if (Juego.estado == EstadoPartida.jugando) {
-			Graficos.mostrar_juego(g);
+			Graficos.mostrar_juego(g, this);
 		} else if (Juego.estado == EstadoPartida.pausa) {
-			Graficos.mostrar_pausa(g, this);
+			Graficos.mostrar_pausa(g);
 		} else if (Juego.estado == EstadoPartida.clasificacion) {
 			Graficos.mostrar_clasificacion(g);
 		}

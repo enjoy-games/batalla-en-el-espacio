@@ -3,6 +3,9 @@ package juego.graficos;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.ImageObserver;
+
+import juego.Juego;
 
 import ejecutable.Ejecutable;
 
@@ -65,24 +68,27 @@ public class Graficos {
 		g.fillRect(0, 33, 400, 400);
 	}
 
-	public static void mostrar_menu_principal(Graphics g, Ejecutable ejecutable) {
+	public static void mostrar_menu_principal(Graphics g) {
 		/*
 		 * Dibuja la pantalla del menu principal.
 		 */
+		g.setColor(Color.white);
 		g.drawString("Pulsa el boton nuevo para comenzar la partida.", 100, 100);
 	}
 
-	public static void mostrar_juego(Graphics g) {
+	public static void mostrar_juego(Graphics g, ImageObserver ejecutable) {
 		/*
 		 * Dibuja los elementos del juego.
 		 */
+		Juego.nave_jugador.dibujar(g, ejecutable);
 		// TODO - Juego.elemento.dibujar(g);
 	}
 
-	public static void mostrar_pausa(Graphics g, Ejecutable ejecutable) {
+	public static void mostrar_pausa(Graphics g) {
 		/*
 		 * Dibuja la pantalla de pausa.
 		 */
+		g.setColor(Color.white);
 		g.drawString("Juego en pausa. Pulse el boton reanudar.", 100, 100);
 	}
 

@@ -47,7 +47,7 @@ public class Juego {
 		Juego.estado = EstadoPartida.menu_principal;
 
 		// Elementos de juego.
-		Juego.nave_jugador = new NaveJugador(200 - 40, 200 - 40, 40, 40, 8,
+		Juego.nave_jugador = new NaveJugador(200 - 20, 400 - 40, 40, 40, 8,
 				Graficos.nave_jugador);
 		// TODO
 	}
