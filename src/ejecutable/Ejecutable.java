@@ -37,6 +37,13 @@ import juego.tipos_de_datos.EstadoPartida;
 public final class Ejecutable extends DoubleBuffering {
 	/**
 	 * 
+	 * Variables
+	 * 
+	 */
+	private int cont_bicho_destruido;
+
+	/**
+	 * 
 	 * Metodos
 	 * 
 	 */
@@ -49,6 +56,8 @@ public final class Ejecutable extends DoubleBuffering {
 		Menu.agregar_menu(this);
 		Juego.iniciar_elementos();
 		this.cargar_eventos();
+
+		this.cont_bicho_destruido = 0;
 	}
 
 	@Override
@@ -85,7 +94,12 @@ public final class Ejecutable extends DoubleBuffering {
 			for (int i = 0; i < Juego.bichos.length; i++) {
 				if (Juego.bichos[i] != null) {
 					if (Juego.bichos[i].bicho_destruido) {
-						Juego.bichos[i] = null;
+						this.cont_bicho_destruido++;
+
+						if (this.cont_bicho_destruido == 4) {
+							Juego.bichos[i] = null;
+							this.cont_bicho_destruido = 0;
+						}
 					} else {
 						Juego.bichos[i].movimiento();
 					}
