@@ -121,8 +121,9 @@ public final class NaveJugador extends ObjetoMovil {
 
 		if (this.disparo == null) {
 			this.disparo = new Disparo(this.esquina_superior_izquierda.x_pos
-					+ this.ancho / 2, this.esquina_superior_izquierda.y_pos, 3,
-					10, 10, Color.white, EstadoObjetoMovil.up);
+					+ this.ancho / 2,
+					this.esquina_superior_izquierda.y_pos - 10 - 1, 3, 10, 10,
+					Color.white, EstadoObjetoMovil.up);
 		}
 	}
 
