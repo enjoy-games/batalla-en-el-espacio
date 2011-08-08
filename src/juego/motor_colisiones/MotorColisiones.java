@@ -70,14 +70,13 @@ public final class MotorColisiones {
 		 */
 		boolean colision = false;
 
-		// Para evitar tangencias agrego un "borde" de 1 pixel a la figura.
-		if (Ax >= Bx - 1) {
+		if (Ax >= Bx) {
 			// Si el punto esta a la derecha del vertice A...
-			if (Ax <= Bx + By + 1) {
+			if (Ax <= Bx + Bancho) {
 				// Si el punto esta a la izquierda del vertice B...
-				if (Ay >= By - 1) {
+				if (Ay >= By) {
 					// Si el punto esta debajo del vertice A...
-					if (Ay <= By + Balto + 1) {
+					if (Ay <= By + Balto) {
 						// Si el punto esta encima del vertice D...
 						colision = true;
 					}
