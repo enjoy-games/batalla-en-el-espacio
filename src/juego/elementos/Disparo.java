@@ -71,11 +71,13 @@ public final class Disparo extends ObjetoMovil {
 
 		if (this.colision_nave_jugador()) {
 			Juego.nave_jugador.destruir();
+			this.esquina_superior_izquierda.x_pos = -1 - this.alto;
 		}
 
 		int i;
 		if ((i = this.colision_bicho()) > -1) {
 			Juego.bichos[i].destruir();
+			this.esquina_superior_izquierda.x_pos = -1 - this.alto;
 		}
 
 		this.esquina_superior_izquierda.y_pos += this.esquina_superior_izquierda.velocidad_y
