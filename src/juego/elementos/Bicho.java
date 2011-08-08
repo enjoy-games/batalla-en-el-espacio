@@ -1,5 +1,6 @@
 package juego.elementos;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.ImageObserver;
@@ -8,6 +9,7 @@ import juego.Juego;
 import juego.motor_colisiones.MotorColisiones;
 import plantillas.elementos.ObjetoMovil;
 import plantillas.elementos.PuntoMovil;
+import plantillas.tipos_de_datos.EstadoObjetoMovil;
 
 /**
  * 
@@ -39,6 +41,7 @@ public final class Bicho extends ObjetoMovil {
 	public int imagen_actual;
 	public Image imagen_destruido;
 	public boolean bicho_destruido;
+	public Disparo disparo;
 
 	/**
 	 * 
@@ -104,7 +107,17 @@ public final class Bicho extends ObjetoMovil {
 	}
 
 	public void disparar() {
-		// TODO
+		if (this.disparo != null
+				&& this.disparo.esquina_superior_izquierda.y_pos <= 0) {
+			this.disparo = null;
+		}
+
+		if (this.disparo == null) {
+			this.disparo = new Disparo(this.esquina_superior_izquierda.x_pos
+					+ this.ancho / 2,
+					this.esquina_superior_izquierda.y_pos + 10 + 1, 3, 10, 10,
+					Color.white, EstadoObjetoMovil.down);
+		}
 	}
 
 	public void destruir() {
