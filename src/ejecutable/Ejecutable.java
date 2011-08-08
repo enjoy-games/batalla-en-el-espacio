@@ -82,7 +82,7 @@ public final class Ejecutable extends DoubleBuffering {
 				Juego.nave_jugador.disparo.movimiento();
 			}
 
-			for (int i = 0; i < Juego.bichos.length; i++) {
+			for (int i = 0; i < Juego.bichos.length - 1; i++) {
 				if (Juego.bichos[i] != null) {
 					if (Juego.bichos[i].bicho_destruido) {
 						Juego.bichos[i] = null;
