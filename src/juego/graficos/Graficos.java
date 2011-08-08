@@ -108,7 +108,9 @@ public class Graficos {
 		}
 
 		for (int i = 0; i < Juego.bichos.length; i++) {
-			Juego.bichos[i].dibujar(g, ejecutable);
+			if (Juego.bichos[i] != null) {
+				Juego.bichos[i].dibujar(g, ejecutable);
+			}
 		}
 		// TODO - Juego.elemento.dibujar(g);
 	}
