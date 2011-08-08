@@ -37,6 +37,8 @@ public final class Bicho extends ObjetoMovil {
 	 */
 	public Image[] imagen;
 	public int imagen_actual;
+	public Image imagen_destruido;
+	public boolean bicho_destruido;
 
 	/**
 	 * 
@@ -44,7 +46,7 @@ public final class Bicho extends ObjetoMovil {
 	 * 
 	 */
 	public Bicho(int x_pos, int y_pos, int ancho, int alto, int velocidad_x,
-			int velocidad_y, Image[] imagen) {
+			int velocidad_y, Image[] imagen, Image imagen_destruido) {
 		super.esquina_superior_izquierda = new PuntoMovil();
 		super.esquina_superior_izquierda.x_pos = x_pos;
 		super.esquina_superior_izquierda.y_pos = y_pos;
@@ -54,6 +56,8 @@ public final class Bicho extends ObjetoMovil {
 		super.alto = alto;
 		this.imagen = imagen;
 		this.imagen_actual = 0;
+		this.imagen_destruido = imagen_destruido;
+		this.bicho_destruido = false;
 	}
 
 	/**
@@ -65,8 +69,15 @@ public final class Bicho extends ObjetoMovil {
 		/*
 		 * Dibuja el elemento segun sus propiedades.
 		 */
-		g.drawImage(this.imagen[this.imagen_actual],
-				super.esquina_superior_izquierda.x_pos,
+		Image imagen;
+
+		if (this.bicho_destruido) {
+			imagen = this.imagen_destruido;
+		} else {
+			imagen = this.imagen[this.imagen_actual];
+		}
+
+		g.drawImage(imagen, super.esquina_superior_izquierda.x_pos,
 				super.esquina_superior_izquierda.y_pos, ejecutable);
 
 		if (this.imagen_actual < this.imagen.length - 1) {
@@ -92,7 +103,7 @@ public final class Bicho extends ObjetoMovil {
 	}
 
 	public void destruir() {
-		// TODO - Destruccion al colisionar con nave jugador o con proyectil.
+		this.bicho_destruido = true;
 	}
 
 	@Deprecated

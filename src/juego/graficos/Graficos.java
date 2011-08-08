@@ -40,6 +40,7 @@ public class Graficos {
 	public static int duplicacion = 8;
 	public static Image[] bicho1 = new Image[duplicacion],
 			bicho2 = new Image[duplicacion];
+	public static Image destruido;
 
 	/**
 	 * 
@@ -50,18 +51,18 @@ public class Graficos {
 		/*
 		 * Cargan en memoria las imagenes necesarias.
 		 */
-		Graficos.nave_jugador = ejecutable.getImage(ejecutable.getCodeBase(),
-				Graficos.directorio_img + "nave_jugador.gif");
+		Graficos.nave_jugador = Graficos.abrir_fichero_imagen(
+				"nave_jugador.gif", ejecutable);
 
 		// Enemigos
-		Image imagen1a = ejecutable.getImage(ejecutable.getCodeBase(),
-				Graficos.directorio_img + "bicho1a.gif");
-		Image imagen1b = ejecutable.getImage(ejecutable.getCodeBase(),
-				Graficos.directorio_img + "bicho1b.gif");
-		Image imagen2a = ejecutable.getImage(ejecutable.getCodeBase(),
-				Graficos.directorio_img + "bicho2a.gif");
-		Image imagen2b = ejecutable.getImage(ejecutable.getCodeBase(),
-				Graficos.directorio_img + "bicho2b.gif");
+		Image imagen1a = Graficos.abrir_fichero_imagen("bicho1a.gif",
+				ejecutable);
+		Image imagen1b = Graficos.abrir_fichero_imagen("bicho1b.gif",
+				ejecutable);
+		Image imagen2a = Graficos.abrir_fichero_imagen("bicho2a.gif",
+				ejecutable);
+		Image imagen2b = Graficos.abrir_fichero_imagen("bicho2b.gif",
+				ejecutable);
 		Image aux_imagen1, aux_imagen2;
 		for (int i = 0; i < Graficos.duplicacion; i++) {
 			// Se aumenta el numero de sprites por segundo.
@@ -78,6 +79,15 @@ public class Graficos {
 			Graficos.bicho1[i] = aux_imagen1;
 			Graficos.bicho2[i] = aux_imagen2;
 		}
+
+		Graficos.destruido = Graficos.abrir_fichero_imagen("destruido.gif",
+				ejecutable);
+	}
+
+	private static Image abrir_fichero_imagen(String nombre,
+			Ejecutable ejecutable) {
+		return ejecutable.getImage(ejecutable.getCodeBase(),
+				Graficos.directorio_img + nombre);
 	}
 
 	public static void mostrar_fondo(Graphics g) {

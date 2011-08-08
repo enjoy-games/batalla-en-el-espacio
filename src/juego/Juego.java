@@ -66,7 +66,8 @@ public class Juego {
 				aux_imagen = Graficos.bicho2;
 			}
 
-			Juego.bichos[i] = new Bicho(x, y, ancho, alto, 8, 8, aux_imagen);
+			Juego.bichos[i] = new Bicho(x, y, ancho, alto, 8, 8, aux_imagen,
+					Graficos.destruido);
 
 			if (x < 400 - ancho) {
 				x += ancho;

@@ -76,7 +76,6 @@ public final class Disparo extends ObjetoMovil {
 		int i;
 		if ((i = this.colision_bicho()) > -1) {
 			Juego.bichos[i].destruir();
-			Juego.bichos[i] = null;
 		}
 
 		this.esquina_superior_izquierda.y_pos += this.esquina_superior_izquierda.velocidad_y
