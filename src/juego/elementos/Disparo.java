@@ -88,7 +88,12 @@ public final class Disparo extends ObjetoMovil {
 		 */
 		boolean colision = false;
 
-		if (MotorColisiones.figura_con_figura(this, Juego.nave_jugador)) {
+		if (MotorColisiones.figura_con_figura(
+				this.esquina_superior_izquierda.x_pos,
+				this.esquina_superior_izquierda.y_pos, this.ancho, this.alto,
+				Juego.nave_jugador.esquina_superior_izquierda.x_pos,
+				Juego.nave_jugador.esquina_superior_izquierda.y_pos,
+				Juego.nave_jugador.ancho, Juego.nave_jugador.alto)) {
 			colision = true;
 		}
 
@@ -103,7 +108,13 @@ public final class Disparo extends ObjetoMovil {
 
 		for (int i = 0; i < Juego.bichos.length; i++) {
 			if (Juego.bichos[i] != null
-					&& MotorColisiones.figura_con_figura(this, Juego.bichos[i])) {
+					&& MotorColisiones.figura_con_figura(
+							this.esquina_superior_izquierda.x_pos,
+							this.esquina_superior_izquierda.y_pos, this.ancho,
+							this.alto,
+							Juego.bichos[i].esquina_superior_izquierda.x_pos,
+							Juego.bichos[i].esquina_superior_izquierda.y_pos,
+							Juego.bichos[i].ancho, Juego.bichos[i].alto)) {
 				colision = i;
 			}
 		}

@@ -91,7 +91,12 @@ public final class Bicho extends ObjetoMovil {
 		/*
 		 * Efectua el movimiento del elemento.
 		 */
-		if (MotorColisiones.figura_con_figura(this, Juego.nave_jugador)) {
+		if (MotorColisiones.figura_con_figura(
+				this.esquina_superior_izquierda.x_pos,
+				this.esquina_superior_izquierda.y_pos, this.ancho, this.alto,
+				Juego.nave_jugador.esquina_superior_izquierda.x_pos,
+				Juego.nave_jugador.esquina_superior_izquierda.y_pos,
+				Juego.nave_jugador.ancho, Juego.nave_jugador.alto)) {
 			this.destruir();
 		} else {
 			super.mover();
