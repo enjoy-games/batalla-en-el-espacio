@@ -1,5 +1,7 @@
 package juego.elementos;
 
+import juego.Juego;
+
 /**
  * 
  * Implementacion de la inteligencia artificial para los enemigos.
@@ -27,6 +29,22 @@ public final class InteligenciaArtificial {
 	 * 
 	 */
 	public void IA() {
-		// TODO
+		this.disparar();
+	}
+
+	private void disparar() {
+		for (int i = Juego.bichos.length - 1; i >= 0; i--) {
+			if (Juego.bichos[i] != null) {
+				if ((i > (Juego.bichos.length - 1) - 10)
+						|| ((i <= (Juego.bichos.length - 1) - 10) && (Juego.bichos[i + 10] == null))) {
+
+					if (Juego.nave_jugador.esquina_superior_izquierda.x_pos > (Juego.bichos[i].esquina_superior_izquierda.x_pos - Juego.bichos[i].ancho / 2)
+							&& Juego.nave_jugador.esquina_superior_izquierda.x_pos < (Juego.bichos[i].esquina_superior_izquierda.x_pos + Juego.bichos[i].ancho / 2)) {
+						Juego.bichos[i].disparar();
+					}
+
+				}
+			}
+		}
 	}
 }
