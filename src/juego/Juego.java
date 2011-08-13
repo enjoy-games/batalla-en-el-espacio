@@ -3,6 +3,7 @@ package juego;
 import java.awt.Image;
 
 import juego.elementos.Bicho;
+import juego.elementos.InteligenciaArtificial;
 import juego.elementos.NaveJugador;
 import juego.graficos.Graficos;
 import juego.tipos_de_datos.EstadoPartida;
@@ -37,6 +38,7 @@ public class Juego {
 	public static NaveJugador nave_jugador;
 	public static int numero_de_enemigos = 40;
 	public static Bicho[] bichos = new Bicho[Juego.numero_de_enemigos];
+	public static InteligenciaArtificial ia;
 
 	// TODO
 
@@ -76,6 +78,8 @@ public class Juego {
 				y += alto;
 			}
 		}
+
+		Juego.ia = new InteligenciaArtificial();
 		// TODO
 	}
 

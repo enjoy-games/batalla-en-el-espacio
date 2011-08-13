@@ -105,6 +105,8 @@ public final class Ejecutable extends DoubleBuffering {
 					}
 				}
 			}
+
+			Juego.ia.ejecutar();
 		}
 	}
 
