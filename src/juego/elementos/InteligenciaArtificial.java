@@ -34,8 +34,7 @@ public final class InteligenciaArtificial {
 
 	private void disparar() {
 		for (int i = Juego.bichos.length - 1; i >= 0; i--) {
-			if (Juego.bichos[i] != null
-					&& Juego.bichos[i].bicho_destruido == false) {
+			if (Juego.bichos[i] != null && Juego.bichos[i].destruido == false) {
 				if ((i > (Juego.bichos.length - 1) - 10)
 						|| ((i <= (Juego.bichos.length - 1) - 10) && (Juego.bichos[i + 10] == null))) {
 

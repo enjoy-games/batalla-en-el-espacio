@@ -40,8 +40,9 @@ public final class Bicho extends ObjetoMovil {
 	public Image[] imagen;
 	public int imagen_actual;
 	public Image imagen_destruido;
-	public boolean bicho_destruido;
+	public boolean destruido;
 	public Disparo disparo;
+	public int segundos_destruido;
 
 	/**
 	 * 
@@ -60,7 +61,7 @@ public final class Bicho extends ObjetoMovil {
 		this.imagen = imagen;
 		this.imagen_actual = 0;
 		this.imagen_destruido = imagen_destruido;
-		this.bicho_destruido = false;
+		this.destruido = false;
 	}
 
 	/**
@@ -74,7 +75,7 @@ public final class Bicho extends ObjetoMovil {
 		 */
 		Image imagen;
 
-		if (this.bicho_destruido) {
+		if (this.destruido) {
 			imagen = this.imagen_destruido;
 		} else {
 			imagen = this.imagen[this.imagen_actual];
@@ -121,7 +122,7 @@ public final class Bicho extends ObjetoMovil {
 	}
 
 	public void destruir() {
-		this.bicho_destruido = true;
+		this.destruido = true;
 	}
 
 	@Deprecated
