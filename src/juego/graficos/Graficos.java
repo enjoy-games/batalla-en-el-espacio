@@ -37,11 +37,11 @@ public class Graficos {
 	 */
 	private Applet ejecutable;
 	private final String directorio_img = "juego/img/";
-	private Image nave_jugador;
+	private Image imagen_nave_jugador;
 	private final int duplicacion = 8;
-	private Image[] bicho1 = new Image[duplicacion];
-	private Image[] bicho2 = new Image[duplicacion];
-	private Image destruido;
+	private Image[] imagen_bicho1 = new Image[duplicacion];
+	private Image[] imagen_bicho2 = new Image[duplicacion];
+	private Image imagen_explosion;
 
 	/**
 	 * 
@@ -62,7 +62,8 @@ public class Graficos {
 		/*
 		 * Cargan en memoria las imagenes necesarias.
 		 */
-		this.nave_jugador = this.abrir_fichero_imagen("nave_jugador.gif");
+		this.imagen_nave_jugador = this
+				.abrir_fichero_imagen("nave_jugador.gif");
 
 		// Enemigos
 		Image imagen1a = this.abrir_fichero_imagen("bicho1a.gif");
@@ -83,11 +84,11 @@ public class Graficos {
 				aux_imagen2 = imagen2b;
 			}
 
-			this.bicho1[i] = aux_imagen1;
-			this.bicho2[i] = aux_imagen2;
+			this.imagen_bicho1[i] = aux_imagen1;
+			this.imagen_bicho2[i] = aux_imagen2;
 		}
 
-		this.destruido = this.abrir_fichero_imagen("destruido.gif");
+		this.imagen_explosion = this.abrir_fichero_imagen("explosion.gif");
 	}
 
 	private Image abrir_fichero_imagen(String nombre) {
@@ -148,7 +149,7 @@ public class Graficos {
 		/*
 		 * Dibuja el elemento segun sus propiedades.
 		 */
-		g.drawImage(this.nave_jugador,
+		g.drawImage(this.imagen_nave_jugador,
 				Juego.nave_jugador.esquina_superior_izquierda.x_pos,
 				Juego.nave_jugador.esquina_superior_izquierda.y_pos,
 				this.ejecutable);
@@ -171,15 +172,15 @@ public class Graficos {
 		Image imagen;
 
 		if (((Bicho) bicho).destruido) {
-			imagen = this.destruido;
+			imagen = this.imagen_explosion;
 		} else {
-			imagen = this.bicho1[((Bicho) bicho).imagen_actual];
+			imagen = this.imagen_bicho1[((Bicho) bicho).imagen_actual];
 		}
 
 		g.drawImage(imagen, bicho.esquina_superior_izquierda.x_pos,
 				bicho.esquina_superior_izquierda.y_pos, ejecutable);
 
-		if (((Bicho) bicho).imagen_actual < this.bicho1.length - 1) {
+		if (((Bicho) bicho).imagen_actual < this.imagen_bicho1.length - 1) {
 			((Bicho) bicho).imagen_actual += 1;
 		} else {
 			((Bicho) bicho).imagen_actual = 0;

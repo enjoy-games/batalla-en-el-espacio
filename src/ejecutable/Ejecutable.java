@@ -62,7 +62,7 @@ public final class Ejecutable extends DoubleBuffering {
 	}
 
 	@Override
-	public void juego() {
+	public void bucle_juego() {
 		/*
 		 * Bucle de juego.
 		 */

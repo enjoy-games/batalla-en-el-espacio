@@ -71,7 +71,7 @@ public abstract class DoubleBuffering extends Applet implements Runnable {
 			// Bucle de ejecucion del hilo.
 
 			// Bucle de juego.
-			this.juego();
+			this.bucle_juego();
 			repaint();
 
 			try {
@@ -115,5 +115,5 @@ public abstract class DoubleBuffering extends Applet implements Runnable {
 	}
 
 	// Bucle de juego.
-	public abstract void juego();
+	public abstract void bucle_juego();
 }

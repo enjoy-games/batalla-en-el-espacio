@@ -71,6 +71,36 @@ public class Juego {
 		// TODO
 	}
 
+	public void ejecutar() {
+		/*
+		 * Bucle de juego.
+		 */
+		if (Juego.estado == EstadoPartida.jugando) {
+
+			Juego.nave_jugador.movimiento();
+
+			if (Juego.nave_jugador.disparo != null) {
+				Juego.nave_jugador.disparo.movimiento();
+			}
+
+			for (int i = 0; i < Juego.bichos.length; i++) {
+				if (Juego.bichos[i] != null) {
+					if (Juego.bichos[i].destruido) {
+						Juego.bichos[i].segundos_destruido++;
+
+						if (Juego.bichos[i].segundos_destruido == 4) {
+							Juego.bichos[i] = null;
+						}
+					} else {
+						Juego.bichos[i].movimiento();
+					}
+				}
+			}
+
+			Juego.ia.ejecutar();
+		}
+	}
+
 	public static void comenzar_partida() {
 		/*
 		 * Establece los datos necesarios para comenzar una partida.
