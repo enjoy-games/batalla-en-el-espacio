@@ -1,10 +1,6 @@
 package juego.elementos;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.image.ImageObserver;
-
 import juego.Juego;
 import juego.motor_colisiones.MotorColisiones;
 import plantillas.elementos.ObjetoMovil;
@@ -50,7 +46,7 @@ public final class Bicho extends ObjetoMovil {
 	 * 
 	 */
 	public Bicho(int x_pos, int y_pos, int ancho, int alto, int velocidad_x,
-			int velocidad_y, Image[] imagen, Image imagen_destruido) {
+			int velocidad_y) {
 		super.esquina_superior_izquierda = new PuntoMovil();
 		super.esquina_superior_izquierda.x_pos = x_pos;
 		super.esquina_superior_izquierda.y_pos = y_pos;
@@ -58,9 +54,7 @@ public final class Bicho extends ObjetoMovil {
 		super.esquina_superior_izquierda.velocidad_y = velocidad_y;
 		super.ancho = ancho;
 		super.alto = alto;
-		this.imagen = imagen;
 		this.imagen_actual = 0;
-		this.imagen_destruido = imagen_destruido;
 		this.destruido = false;
 	}
 
@@ -69,28 +63,6 @@ public final class Bicho extends ObjetoMovil {
 	 * Metodos
 	 * 
 	 */
-	public void dibujar(Graphics g, ImageObserver ejecutable) {
-		/*
-		 * Dibuja el elemento segun sus propiedades.
-		 */
-		Image imagen;
-
-		if (this.destruido) {
-			imagen = this.imagen_destruido;
-		} else {
-			imagen = this.imagen[this.imagen_actual];
-		}
-
-		g.drawImage(imagen, super.esquina_superior_izquierda.x_pos,
-				super.esquina_superior_izquierda.y_pos, ejecutable);
-
-		if (this.imagen_actual < this.imagen.length - 1) {
-			this.imagen_actual += 1;
-		} else {
-			this.imagen_actual = 0;
-		}
-	}
-
 	public void movimiento() {
 		/*
 		 * Efectua el movimiento del elemento.
@@ -117,16 +89,11 @@ public final class Bicho extends ObjetoMovil {
 			this.disparo = new Disparo(this.esquina_superior_izquierda.x_pos
 					+ this.ancho / 2,
 					this.esquina_superior_izquierda.y_pos + 10 + 1, 3, 10, 10,
-					Color.white, EstadoObjetoMovil.down);
+					EstadoObjetoMovil.down);
 		}
 	}
 
 	public void destruir() {
 		this.destruido = true;
-	}
-
-	@Deprecated
-	@Override
-	public void dibujar(Graphics g) {
 	}
 }

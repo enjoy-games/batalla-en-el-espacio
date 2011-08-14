@@ -35,6 +35,8 @@ import juego.tipos_de_datos.EstadoPartida;
  */
 @SuppressWarnings("serial")
 public final class Ejecutable extends DoubleBuffering {
+	private Graficos motor_grafico;
+
 	/**
 	 * 
 	 * Metodos
@@ -45,7 +47,7 @@ public final class Ejecutable extends DoubleBuffering {
 		/*
 		 * Se ejecuta al inicio de carga del applet.
 		 */
-		Graficos.cargar_imagenes(this);
+		this.motor_grafico = new Graficos(this);
 		Menu.agregar_menu(this);
 		Juego.iniciar_elementos();
 		this.cargar_eventos();
@@ -56,17 +58,7 @@ public final class Ejecutable extends DoubleBuffering {
 		/*
 		 * Metodo de la clase applet que permite dibujar en el.
 		 */
-		Graficos.mostrar_fondo(g);
-
-		if (Juego.estado == EstadoPartida.menu_principal) {
-			Graficos.mostrar_menu_principal(g);
-		} else if (Juego.estado == EstadoPartida.jugando) {
-			Graficos.mostrar_juego(g, this);
-		} else if (Juego.estado == EstadoPartida.pausa) {
-			Graficos.mostrar_pausa(g);
-		} else if (Juego.estado == EstadoPartida.clasificacion) {
-			Graficos.mostrar_clasificacion(g);
-		}
+		this.motor_grafico.ejecutar(g);
 	}
 
 	@Override

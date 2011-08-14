@@ -1,13 +1,13 @@
 package juego.graficos;
 
+import java.applet.Applet;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.image.ImageObserver;
-
+import plantillas.elementos.ObjetoMovil;
 import juego.Juego;
-
-import ejecutable.Ejecutable;
+import juego.elementos.Bicho;
+import juego.tipos_de_datos.EstadoPartida;
 
 /**
  * 
@@ -35,38 +35,45 @@ public class Graficos {
 	 * Variables
 	 * 
 	 */
-	private static final String directorio_img = "juego/img/";
-	public static Image nave_jugador;
-	public static int duplicacion = 8;
-	public static Image[] bicho1 = new Image[duplicacion],
-			bicho2 = new Image[duplicacion];
-	public static Image destruido;
+	private Applet ejecutable;
+	private final String directorio_img = "juego/img/";
+	private Image nave_jugador;
+	private final int duplicacion = 8;
+	private Image[] bicho1 = new Image[duplicacion];
+	private Image[] bicho2 = new Image[duplicacion];
+	private Image destruido;
+
+	/**
+	 * 
+	 * Constructor
+	 * 
+	 */
+	public Graficos(Applet ejecutable) {
+		this.ejecutable = ejecutable;
+		this.cargar_imagenes();
+	}
 
 	/**
 	 * 
 	 * Metodos
 	 * 
 	 */
-	public static void cargar_imagenes(Ejecutable ejecutable) {
+	private void cargar_imagenes() {
 		/*
 		 * Cargan en memoria las imagenes necesarias.
 		 */
-		Graficos.nave_jugador = Graficos.abrir_fichero_imagen(
-				"nave_jugador.gif", ejecutable);
+		this.nave_jugador = this.abrir_fichero_imagen("nave_jugador.gif");
 
 		// Enemigos
-		Image imagen1a = Graficos.abrir_fichero_imagen("bicho1a.gif",
-				ejecutable);
-		Image imagen1b = Graficos.abrir_fichero_imagen("bicho1b.gif",
-				ejecutable);
-		Image imagen2a = Graficos.abrir_fichero_imagen("bicho2a.gif",
-				ejecutable);
-		Image imagen2b = Graficos.abrir_fichero_imagen("bicho2b.gif",
-				ejecutable);
+		Image imagen1a = this.abrir_fichero_imagen("bicho1a.gif");
+		Image imagen1b = this.abrir_fichero_imagen("bicho1b.gif");
+		Image imagen2a = this.abrir_fichero_imagen("bicho2a.gif");
+		Image imagen2b = this.abrir_fichero_imagen("bicho2b.gif");
 		Image aux_imagen1, aux_imagen2;
-		for (int i = 0; i < Graficos.duplicacion; i++) {
+
+		for (int i = 0; i < this.duplicacion; i++) {
 			// Se aumenta el numero de sprites por segundo.
-			if (i < Graficos.duplicacion / 2) {
+			if (i < this.duplicacion / 2) {
 				// La primera mitad se carga con el spriteA.
 				aux_imagen1 = imagen1a;
 				aux_imagen2 = imagen2a;
@@ -76,21 +83,33 @@ public class Graficos {
 				aux_imagen2 = imagen2b;
 			}
 
-			Graficos.bicho1[i] = aux_imagen1;
-			Graficos.bicho2[i] = aux_imagen2;
+			this.bicho1[i] = aux_imagen1;
+			this.bicho2[i] = aux_imagen2;
 		}
 
-		Graficos.destruido = Graficos.abrir_fichero_imagen("destruido.gif",
-				ejecutable);
+		this.destruido = this.abrir_fichero_imagen("destruido.gif");
 	}
 
-	private static Image abrir_fichero_imagen(String nombre,
-			Ejecutable ejecutable) {
-		return ejecutable.getImage(ejecutable.getCodeBase(),
-				Graficos.directorio_img + nombre);
+	private Image abrir_fichero_imagen(String nombre) {
+		return this.ejecutable.getImage(this.ejecutable.getCodeBase(),
+				this.directorio_img + nombre);
 	}
 
-	public static void mostrar_fondo(Graphics g) {
+	public void ejecutar(Graphics g) {
+		this.mostrar_fondo(g);
+
+		if (Juego.estado == EstadoPartida.menu_principal) {
+			this.mostrar_menu_principal(g);
+		} else if (Juego.estado == EstadoPartida.jugando) {
+			this.mostrar_juego(g);
+		} else if (Juego.estado == EstadoPartida.pausa) {
+			this.mostrar_pausa(g);
+		} else if (Juego.estado == EstadoPartida.clasificacion) {
+			this.mostrar_clasificacion(g);
+		}
+	}
+
+	private void mostrar_fondo(Graphics g) {
 		/*
 		 * Dibuja el fondo.
 		 */
@@ -98,7 +117,7 @@ public class Graficos {
 		g.fillRect(0, 33, 400, 400);
 	}
 
-	public static void mostrar_menu_principal(Graphics g) {
+	private void mostrar_menu_principal(Graphics g) {
 		/*
 		 * Dibuja la pantalla del menu principal.
 		 */
@@ -107,25 +126,76 @@ public class Graficos {
 				100);
 	}
 
-	public static void mostrar_juego(Graphics g, ImageObserver ejecutable) {
+	private void mostrar_juego(Graphics g) {
 		/*
 		 * Dibuja los elementos del juego.
 		 */
-		Juego.nave_jugador.dibujar(g, ejecutable);
+		this.dibujar_nave_jugador(g);
 
 		if (Juego.nave_jugador.disparo != null) {
-			Juego.nave_jugador.disparo.dibujar(g);
+			this.dibujar_disparo(g, Juego.nave_jugador.disparo);
 		}
 
 		for (int i = 0; i < Juego.bichos.length; i++) {
 			if (Juego.bichos[i] != null) {
-				Juego.bichos[i].dibujar(g, ejecutable);
+				this.dibujar_bicho(g, Juego.bichos[i]);
 			}
 		}
 		// TODO - Juego.elemento.dibujar(g);
 	}
 
-	public static void mostrar_pausa(Graphics g) {
+	private void dibujar_nave_jugador(Graphics g) {
+		/*
+		 * Dibuja el elemento segun sus propiedades.
+		 */
+		g.drawImage(this.nave_jugador,
+				Juego.nave_jugador.esquina_superior_izquierda.x_pos,
+				Juego.nave_jugador.esquina_superior_izquierda.y_pos,
+				this.ejecutable);
+	}
+
+	private void dibujar_disparo(Graphics g, ObjetoMovil disparo) {
+		/*
+		 * Dibuja el elemento segun sus propiedades.
+		 */
+		g.setColor(Color.white);
+		g.fillRect(disparo.esquina_superior_izquierda.x_pos,
+				disparo.esquina_superior_izquierda.y_pos, disparo.ancho,
+				disparo.alto);
+	}
+
+	private void dibujar_bicho(Graphics g, ObjetoMovil bicho) {
+		/*
+		 * Dibuja el elemento segun sus propiedades.
+		 */
+		Image imagen;
+
+		if (((Bicho) bicho).destruido) {
+			imagen = this.destruido;
+		} else {
+			imagen = this.bicho1[((Bicho) bicho).imagen_actual];
+		}
+
+		g.drawImage(imagen, bicho.esquina_superior_izquierda.x_pos,
+				bicho.esquina_superior_izquierda.y_pos, ejecutable);
+
+		if (((Bicho) bicho).imagen_actual < this.bicho1.length - 1) {
+			((Bicho) bicho).imagen_actual += 1;
+		} else {
+			((Bicho) bicho).imagen_actual = 0;
+		}
+	}
+
+	private void dibujar_contador(Graphics g) {
+		/*
+		 * Dibuja el contador, segun sus propiedades.
+		 */
+		// TODO - Contador de vida con marco y rayas (Tipo Shinobi).
+		g.setColor(Color.white);
+		g.drawString("Vida", 0, 0);
+	}
+
+	private void mostrar_pausa(Graphics g) {
 		/*
 		 * Dibuja la pantalla de pausa.
 		 */
@@ -133,7 +203,7 @@ public class Graficos {
 		g.drawString("Juego en pausa. Pulse el boton 'Reanudar'.", 100, 100);
 	}
 
-	public static void mostrar_clasificacion(Graphics g) {
+	private void mostrar_clasificacion(Graphics g) {
 		/*
 		 * Dibuja la pantalla de clasificacion.
 		 */

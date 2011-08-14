@@ -1,8 +1,5 @@
 package juego.elementos;
 
-import java.awt.Color;
-import java.awt.Graphics;
-
 import plantillas.elementos.ObjetoEstatico;
 import plantillas.elementos.PuntoEstatico;
 
@@ -47,19 +44,4 @@ public final class Contador extends ObjetoEstatico {
 		super.alto = alto;
 		this.vida = 3;
 	}
-
-	/**
-	 * Metodos
-	 */
-	@Override
-	public void dibujar(Graphics g) {
-		/*
-		 * Dibuja el contador, segun sus propiedades.
-		 */
-		// TODO - Contador de vida con marco y rayas (Tipo Shinobi).
-		g.setColor(Color.white);
-		g.drawString("Vida", super.esquina_superior_izquierda.x_pos + 1,
-				super.esquina_superior_izquierda.y_pos + 10 + 1);
-	}
-
 }

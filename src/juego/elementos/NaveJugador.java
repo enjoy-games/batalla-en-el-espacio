@@ -1,10 +1,6 @@
 package juego.elementos;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.image.ImageObserver;
-
 import juego.Juego;
 import plantillas.elementos.ObjetoMovil;
 import plantillas.elementos.PuntoMovil;
@@ -45,7 +41,7 @@ public final class NaveJugador extends ObjetoMovil {
 	 * 
 	 */
 	public NaveJugador(int x_pos, int y_pos, int ancho, int alto,
-			int velocidad_x, Image imagen) {
+			int velocidad_x) {
 		super.esquina_superior_izquierda = new PuntoMovil();
 		super.esquina_superior_izquierda.x_pos = x_pos;
 		super.esquina_superior_izquierda.y_pos = y_pos;
@@ -53,7 +49,6 @@ public final class NaveJugador extends ObjetoMovil {
 		// velocidad_y = 0
 		super.ancho = ancho;
 		super.alto = alto;
-		this.imagen = imagen;
 	}
 
 	/**
@@ -61,14 +56,6 @@ public final class NaveJugador extends ObjetoMovil {
 	 * Metodos
 	 * 
 	 */
-	public void dibujar(Graphics g, ImageObserver ejecutable) {
-		/*
-		 * Dibuja el elemento segun sus propiedades.
-		 */
-		g.drawImage(this.imagen, super.esquina_superior_izquierda.x_pos,
-				super.esquina_superior_izquierda.y_pos, ejecutable);
-	}
-
 	public void movimiento() {
 		/*
 		 * Mueve el elemento comprobando las colisiones.
@@ -123,16 +110,11 @@ public final class NaveJugador extends ObjetoMovil {
 			this.disparo = new Disparo(this.esquina_superior_izquierda.x_pos
 					+ this.ancho / 2,
 					this.esquina_superior_izquierda.y_pos - 10 - 1, 3, 10, 10,
-					Color.white, EstadoObjetoMovil.up);
+					EstadoObjetoMovil.up);
 		}
 	}
 
 	public void destruir() {
 		// TODO
-	}
-
-	@Deprecated
-	@Override
-	public void dibujar(Graphics g) {
 	}
 }

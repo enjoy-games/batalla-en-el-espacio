@@ -1,8 +1,5 @@
 package plantillas.elementos;
 
-import java.awt.Color;
-import java.awt.Graphics;
-
 /**
  * 
  * Implementacion de un objeto del juego que no se mueve.
@@ -31,13 +28,4 @@ public abstract class ObjetoEstatico {
 	 */
 	public PuntoEstatico esquina_superior_izquierda;
 	public int ancho, alto;
-	public Color color;
-
-	/**
-	 * 
-	 * Metodos
-	 * 
-	 */
-	// Cada elemento define su dibujo.
-	public abstract void dibujar(Graphics g);
 }

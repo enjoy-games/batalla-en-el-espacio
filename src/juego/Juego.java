@@ -1,11 +1,8 @@
 package juego;
 
-import java.awt.Image;
-
 import juego.elementos.Bicho;
 import juego.elementos.InteligenciaArtificial;
 import juego.elementos.NaveJugador;
-import juego.graficos.Graficos;
 import juego.tipos_de_datos.EstadoPartida;
 
 /**
@@ -55,21 +52,12 @@ public class Juego {
 
 		// Elementos de juego.
 
-		Juego.nave_jugador = new NaveJugador(200 - 20, 400 - 40, 40, 40, 8,
-				Graficos.nave_jugador);
+		Juego.nave_jugador = new NaveJugador(200 - 20, 400 - 40, 40, 40, 8);
 
 		// Enemigos
 		int x = 0, y = 33, ancho = 40, alto = 40;
-		Image[] aux_imagen;
 		for (int i = 0; i < numero_de_enemigos; i++) {
-			if (i % 2 == 0) {
-				aux_imagen = Graficos.bicho1;
-			} else {
-				aux_imagen = Graficos.bicho2;
-			}
-
-			Juego.bichos[i] = new Bicho(x, y, ancho, alto, 8, 8, aux_imagen,
-					Graficos.destruido);
+			Juego.bichos[i] = new Bicho(x, y, ancho, alto, 8, 8);
 
 			if (x < 400 - ancho) {
 				x += ancho;
