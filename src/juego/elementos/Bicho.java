@@ -1,6 +1,5 @@
 package juego.elementos;
 
-import java.awt.Image;
 import juego.Juego;
 import juego.motor_colisiones.MotorColisiones;
 import plantillas.elementos.ObjetoMovil;
@@ -33,20 +32,20 @@ public final class Bicho extends ObjetoMovil {
 	 * Variables
 	 * 
 	 */
-	public Image[] imagen;
+	public int indice_bicho;
 	public int imagen_actual;
-	public Image imagen_destruido;
 	public boolean destruido;
-	public Disparo disparo;
 	public int segundos_destruido;
+	private Juego puntero_juego;
 
 	/**
 	 * 
 	 * Constructor
 	 * 
 	 */
-	public Bicho(int x_pos, int y_pos, int ancho, int alto, int velocidad_x,
-			int velocidad_y) {
+	public Bicho(int indice, int x_pos, int y_pos, int ancho, int alto,
+			int velocidad_x, int velocidad_y, Juego juego) {
+		this.indice_bicho = indice;
 		super.esquina_superior_izquierda = new PuntoMovil();
 		super.esquina_superior_izquierda.x_pos = x_pos;
 		super.esquina_superior_izquierda.y_pos = y_pos;
@@ -67,12 +66,16 @@ public final class Bicho extends ObjetoMovil {
 		/*
 		 * Efectua el movimiento del elemento.
 		 */
-		if (MotorColisiones.figura_con_figura(
-				this.esquina_superior_izquierda.x_pos,
-				this.esquina_superior_izquierda.y_pos, this.ancho, this.alto,
-				Juego.nave_jugador.esquina_superior_izquierda.x_pos,
-				Juego.nave_jugador.esquina_superior_izquierda.y_pos,
-				Juego.nave_jugador.ancho, Juego.nave_jugador.alto)) {
+		if (MotorColisiones
+				.figura_con_figura(
+						this.esquina_superior_izquierda.x_pos,
+						this.esquina_superior_izquierda.y_pos,
+						this.ancho,
+						this.alto,
+						this.puntero_juego.nave_jugador.esquina_superior_izquierda.x_pos,
+						this.puntero_juego.nave_jugador.esquina_superior_izquierda.y_pos,
+						this.puntero_juego.nave_jugador.ancho,
+						this.puntero_juego.nave_jugador.alto)) {
 			this.destruir();
 		} else {
 			super.mover();
@@ -80,16 +83,16 @@ public final class Bicho extends ObjetoMovil {
 	}
 
 	public void disparar() {
-		if (this.disparo != null
-				&& this.disparo.esquina_superior_izquierda.y_pos <= 0) {
-			this.disparo = null;
+		if (this.puntero_juego.disparo_bichos[this.indice_bicho] != null
+				&& this.puntero_juego.disparo_bichos[this.indice_bicho].esquina_superior_izquierda.y_pos <= 0) {
+			this.puntero_juego.disparo_bichos[this.indice_bicho] = null;
 		}
 
-		if (this.disparo == null) {
-			this.disparo = new Disparo(this.esquina_superior_izquierda.x_pos
-					+ this.ancho / 2,
+		if (this.puntero_juego.disparo_bichos[this.indice_bicho] == null) {
+			this.puntero_juego.disparo_bichos[this.indice_bicho] = new Disparo(
+					this.esquina_superior_izquierda.x_pos + this.ancho / 2,
 					this.esquina_superior_izquierda.y_pos + 10 + 1, 3, 10, 10,
-					EstadoObjetoMovil.down);
+					EstadoObjetoMovil.down, this.puntero_juego);
 		}
 	}
 

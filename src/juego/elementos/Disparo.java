@@ -30,11 +30,18 @@ import plantillas.tipos_de_datos.EstadoObjetoMovil;
 public final class Disparo extends ObjetoMovil {
 	/**
 	 * 
+	 * Variables
+	 * 
+	 */
+	private Juego puntero_juego;
+
+	/**
+	 * 
 	 * Constructor
 	 * 
 	 */
 	Disparo(int x_pos, int y_pos, int ancho, int alto, int velocidad_y,
-			EstadoObjetoMovil estado) {
+			EstadoObjetoMovil estado, Juego juego) {
 		super.esquina_superior_izquierda = new PuntoMovil();
 		super.esquina_superior_izquierda.x_pos = x_pos;
 		super.esquina_superior_izquierda.y_pos = y_pos;
@@ -43,6 +50,7 @@ public final class Disparo extends ObjetoMovil {
 		super.ancho = ancho;
 		super.alto = alto;
 		super.estado = estado;
+		this.puntero_juego = juego;
 	}
 
 	/**
@@ -66,13 +74,13 @@ public final class Disparo extends ObjetoMovil {
 		}
 
 		if (this.colision_nave_jugador()) {
-			Juego.nave_jugador.destruir();
+			this.puntero_juego.nave_jugador.destruir();
 			this.esquina_superior_izquierda.x_pos = -1 - this.alto;
 		}
 
 		int i;
 		if ((i = this.colision_bicho()) > -1) {
-			Juego.bichos[i].destruir();
+			this.puntero_juego.bichos[i].destruir();
 			this.esquina_superior_izquierda.x_pos = -1 - this.alto;
 		}
 
@@ -86,12 +94,16 @@ public final class Disparo extends ObjetoMovil {
 		 */
 		boolean colision = false;
 
-		if (MotorColisiones.figura_con_figura(
-				this.esquina_superior_izquierda.x_pos,
-				this.esquina_superior_izquierda.y_pos, this.ancho, this.alto,
-				Juego.nave_jugador.esquina_superior_izquierda.x_pos,
-				Juego.nave_jugador.esquina_superior_izquierda.y_pos,
-				Juego.nave_jugador.ancho, Juego.nave_jugador.alto)) {
+		if (MotorColisiones
+				.figura_con_figura(
+						this.esquina_superior_izquierda.x_pos,
+						this.esquina_superior_izquierda.y_pos,
+						this.ancho,
+						this.alto,
+						this.puntero_juego.nave_jugador.esquina_superior_izquierda.x_pos,
+						this.puntero_juego.nave_jugador.esquina_superior_izquierda.y_pos,
+						this.puntero_juego.nave_jugador.ancho,
+						this.puntero_juego.nave_jugador.alto)) {
 			colision = true;
 		}
 
@@ -104,15 +116,18 @@ public final class Disparo extends ObjetoMovil {
 		 */
 		int colision = -1;
 
-		for (int i = 0; i < Juego.bichos.length; i++) {
-			if (Juego.bichos[i] != null
-					&& MotorColisiones.figura_con_figura(
-							this.esquina_superior_izquierda.x_pos,
-							this.esquina_superior_izquierda.y_pos, this.ancho,
-							this.alto,
-							Juego.bichos[i].esquina_superior_izquierda.x_pos,
-							Juego.bichos[i].esquina_superior_izquierda.y_pos,
-							Juego.bichos[i].ancho, Juego.bichos[i].alto)) {
+		for (int i = 0; i < this.puntero_juego.bichos.length; i++) {
+			if (this.puntero_juego.bichos[i] != null
+					&& MotorColisiones
+							.figura_con_figura(
+									this.esquina_superior_izquierda.x_pos,
+									this.esquina_superior_izquierda.y_pos,
+									this.ancho,
+									this.alto,
+									this.puntero_juego.bichos[i].esquina_superior_izquierda.x_pos,
+									this.puntero_juego.bichos[i].esquina_superior_izquierda.y_pos,
+									this.puntero_juego.bichos[i].ancho,
+									this.puntero_juego.bichos[i].alto)) {
 				colision = i;
 			}
 		}

@@ -30,6 +30,22 @@ import juego.tipos_de_datos.EstadoPartida;
 public final class BtnPausa_click implements MouseListener {
 	/**
 	 * 
+	 * Variables
+	 * 
+	 */
+	private Juego puntero_juego;
+
+	/**
+	 * 
+	 * Constructor
+	 * 
+	 */
+	public BtnPausa_click(Juego juego) {
+		this.puntero_juego = juego;
+	}
+
+	/**
+	 * 
 	 * Metodos
 	 * 
 	 */
@@ -38,11 +54,11 @@ public final class BtnPausa_click implements MouseListener {
 		/*
 		 * Evento click
 		 */
-		if (Juego.estado == EstadoPartida.jugando) {
-			Juego.pausa(true);
+		if (this.puntero_juego.estado == EstadoPartida.jugando) {
+			this.puntero_juego.pausa(true);
 			((Button) e.getSource()).setLabel("Reanudar");
-		} else if (Juego.estado == EstadoPartida.pausa) {
-			Juego.pausa(false);
+		} else if (this.puntero_juego.estado == EstadoPartida.pausa) {
+			this.puntero_juego.pausa(false);
 			((Button) e.getSource()).setLabel("Pausa");
 		}
 	}

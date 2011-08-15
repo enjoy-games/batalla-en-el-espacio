@@ -39,14 +39,16 @@ public class MotorGrafico extends plantillas.graficos.MotorGrafico {
 	private Image[] imagen_bicho1 = new Image[duplicacion];
 	private Image[] imagen_bicho2 = new Image[duplicacion];
 	private Image imagen_explosion;
+	private Juego puntero_juego;
 
 	/**
 	 * 
 	 * Constructor
 	 * 
 	 */
-	public MotorGrafico(Applet ejecutable) {
+	public MotorGrafico(Applet ejecutable, Juego juego) {
 		super.ejecutable = ejecutable;
+		this.puntero_juego = juego;
 		this.cargar_imagenes();
 	}
 
@@ -116,25 +118,25 @@ public class MotorGrafico extends plantillas.graficos.MotorGrafico {
 		this.mostrar_fondo(g);
 		this.dibujar_nave_jugador(g);
 
-		if (Juego.nave_jugador.disparo != null) {
-			this.dibujar_disparo(g, Juego.nave_jugador.disparo);
+		if (this.puntero_juego.disparo_jugador != null) {
+			this.dibujar_disparo(g, this.puntero_juego.disparo_jugador);
 		}
 
-		for (int i = 0; i < Juego.bichos.length; i++) {
-			if (Juego.bichos[i] != null) {
-				this.dibujar_bicho(g, Juego.bichos[i]);
+		for (int i = 0; i < this.puntero_juego.bichos.length; i++) {
+			if (this.puntero_juego.bichos[i] != null) {
+				this.dibujar_bicho(g, this.puntero_juego.bichos[i]);
 			}
 		}
-		// TODO - Juego.elemento.dibujar(g);
 	}
 
 	private void dibujar_nave_jugador(Graphics g) {
 		/*
 		 * Dibuja el elemento segun sus propiedades.
 		 */
-		g.drawImage(this.imagen_nave_jugador,
-				Juego.nave_jugador.esquina_superior_izquierda.x_pos,
-				Juego.nave_jugador.esquina_superior_izquierda.y_pos,
+		g.drawImage(
+				this.imagen_nave_jugador,
+				this.puntero_juego.nave_jugador.esquina_superior_izquierda.x_pos,
+				this.puntero_juego.nave_jugador.esquina_superior_izquierda.y_pos,
 				super.ejecutable);
 	}
 

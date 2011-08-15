@@ -28,6 +28,22 @@ import juego.Juego;
 public class BtnNuevo_click implements MouseListener {
 	/**
 	 * 
+	 * Variables
+	 * 
+	 */
+	private Juego puntero_juego;
+
+	/**
+	 * 
+	 * Constructor
+	 * 
+	 */
+	public BtnNuevo_click(Juego juego) {
+		this.puntero_juego = juego;
+	}
+
+	/**
+	 * 
 	 * Metodos
 	 * 
 	 */
@@ -36,8 +52,7 @@ public class BtnNuevo_click implements MouseListener {
 		/*
 		 * Evento click.
 		 */
-		Juego.iniciar_elementos();
-		Juego.comenzar_partida();
+		this.puntero_juego.comenzar_partida();
 	}
 
 	@Override

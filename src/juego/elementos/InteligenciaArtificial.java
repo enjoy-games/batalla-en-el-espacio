@@ -25,6 +25,17 @@ import juego.Juego;
 public final class InteligenciaArtificial {
 	/**
 	 * 
+	 * Variables
+	 * 
+	 */
+	private Juego puntero_juego;
+
+	public InteligenciaArtificial(Juego juego) {
+		this.puntero_juego = juego;
+	}
+
+	/**
+	 * 
 	 * Metodos
 	 * 
 	 */
@@ -33,14 +44,15 @@ public final class InteligenciaArtificial {
 	}
 
 	private void disparar() {
-		for (int i = Juego.bichos.length - 1; i >= 0; i--) {
-			if (Juego.bichos[i] != null && Juego.bichos[i].destruido == false) {
-				if ((i > (Juego.bichos.length - 1) - 10)
-						|| ((i <= (Juego.bichos.length - 1) - 10) && (Juego.bichos[i + 10] == null))) {
+		for (int i = this.puntero_juego.bichos.length - 1; i >= 0; i--) {
+			if (this.puntero_juego.bichos[i] != null
+					&& this.puntero_juego.bichos[i].destruido == false) {
+				if ((i > (this.puntero_juego.bichos.length - 1) - 10)
+						|| ((i <= (this.puntero_juego.bichos.length - 1) - 10) && (this.puntero_juego.bichos[i + 10] == null))) {
 
-					if (Juego.nave_jugador.esquina_superior_izquierda.x_pos > (Juego.bichos[i].esquina_superior_izquierda.x_pos - Juego.bichos[i].ancho / 2)
-							&& Juego.nave_jugador.esquina_superior_izquierda.x_pos < (Juego.bichos[i].esquina_superior_izquierda.x_pos + Juego.bichos[i].ancho / 2)) {
-						Juego.bichos[i].disparar();
+					if (this.puntero_juego.nave_jugador.esquina_superior_izquierda.x_pos > (this.puntero_juego.bichos[i].esquina_superior_izquierda.x_pos - this.puntero_juego.bichos[i].ancho / 2)
+							&& this.puntero_juego.nave_jugador.esquina_superior_izquierda.x_pos < (this.puntero_juego.bichos[i].esquina_superior_izquierda.x_pos + this.puntero_juego.bichos[i].ancho / 2)) {
+						this.puntero_juego.bichos[i].disparar();
 					}
 
 				}

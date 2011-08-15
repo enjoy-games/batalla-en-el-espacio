@@ -1,6 +1,7 @@
 package juego;
 
 import juego.elementos.Bicho;
+import juego.elementos.Disparo;
 import juego.elementos.InteligenciaArtificial;
 import juego.elementos.NaveJugador;
 import juego.tipos_de_datos.EstadoPartida;
@@ -31,33 +32,33 @@ public class Juego {
 	 * Variables
 	 * 
 	 */
-	public static EstadoPartida estado;
-	public static NaveJugador nave_jugador;
-	public static int numero_de_enemigos = 40;
-	public static Bicho[] bichos = new Bicho[Juego.numero_de_enemigos];
-	public static InteligenciaArtificial ia;
-
-	// TODO
+	public EstadoPartida estado;
+	public int numero_de_enemigos = 40;
+	public NaveJugador nave_jugador;
+	public Disparo disparo_jugador;
+	public Bicho[] bichos = new Bicho[this.numero_de_enemigos];
+	public Disparo[] disparo_bichos = new Disparo[this.numero_de_enemigos];
+	public InteligenciaArtificial ia;
 
 	/**
 	 * 
-	 * Metodos
+	 * Constructor
 	 * 
 	 */
-	public static void iniciar_elementos() {
+	public Juego() {
 		/*
 		 * Instancia los objetos y establece sus propiedades.
 		 */
-		Juego.estado = EstadoPartida.menu_principal;
+		this.estado = EstadoPartida.menu_principal;
 
 		// Elementos de juego.
 
-		Juego.nave_jugador = new NaveJugador(200 - 20, 400 - 40, 40, 40, 8);
+		this.nave_jugador = new NaveJugador(200 - 20, 400 - 40, 40, 40, 8, this);
 
 		// Enemigos
 		int x = 0, y = 33, ancho = 40, alto = 40;
 		for (int i = 0; i < numero_de_enemigos; i++) {
-			Juego.bichos[i] = new Bicho(x, y, ancho, alto, 8, 8);
+			this.bichos[i] = new Bicho(i, x, y, ancho, alto, 8, 8, this);
 
 			if (x < 400 - ancho) {
 				x += ancho;
@@ -67,59 +68,63 @@ public class Juego {
 			}
 		}
 
-		Juego.ia = new InteligenciaArtificial();
-		// TODO
+		this.ia = new InteligenciaArtificial(this);
 	}
 
+	/**
+	 * 
+	 * Metodos
+	 * 
+	 */
 	public void ejecutar() {
 		/*
 		 * Bucle de juego.
 		 */
-		if (Juego.estado == EstadoPartida.jugando) {
+		if (this.estado == EstadoPartida.jugando) {
 
-			Juego.nave_jugador.movimiento();
+			this.nave_jugador.movimiento();
 
-			if (Juego.nave_jugador.disparo != null) {
-				Juego.nave_jugador.disparo.movimiento();
+			if (this.disparo_jugador != null) {
+				this.disparo_jugador.movimiento();
 			}
 
-			for (int i = 0; i < Juego.bichos.length; i++) {
-				if (Juego.bichos[i] != null) {
-					if (Juego.bichos[i].destruido) {
-						Juego.bichos[i].segundos_destruido++;
+			for (int i = 0; i < this.bichos.length; i++) {
+				if (this.bichos[i] != null) {
+					if (this.bichos[i].destruido) {
+						this.bichos[i].segundos_destruido++;
 
-						if (Juego.bichos[i].segundos_destruido == 4) {
-							Juego.bichos[i] = null;
+						if (this.bichos[i].segundos_destruido == 4) {
+							this.bichos[i] = null;
 						}
 					} else {
-						Juego.bichos[i].movimiento();
+						this.bichos[i].movimiento();
 					}
 				}
 			}
 
-			Juego.ia.ejecutar();
+			this.ia.ejecutar();
 		}
 	}
 
-	public static void comenzar_partida() {
+	public void comenzar_partida() {
 		/*
 		 * Establece los datos necesarios para comenzar una partida.
 		 */
-		if (Juego.estado == EstadoPartida.menu_principal) {
-			Juego.estado = EstadoPartida.jugando;
+		if (this.estado == EstadoPartida.menu_principal) {
+			this.estado = EstadoPartida.jugando;
 		}
 	}
 
-	public static void pausa(boolean pausar) {
+	public void pausa(boolean pausar) {
 		/*
 		 * Pausa la partida o la reanuda.
 		 */
-		if (Juego.estado == EstadoPartida.jugando
-				|| Juego.estado == EstadoPartida.pausa) {
+		if (this.estado == EstadoPartida.jugando
+				|| this.estado == EstadoPartida.pausa) {
 			if (pausar) {
-				Juego.estado = EstadoPartida.pausa;
+				this.estado = EstadoPartida.pausa;
 			} else {
-				Juego.estado = EstadoPartida.jugando;
+				this.estado = EstadoPartida.jugando;
 			}
 		}
 	}

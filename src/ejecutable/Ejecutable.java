@@ -11,7 +11,6 @@ import juego.controles_de_usuario.Teclado;
 import juego.graficos.MotorGrafico;
 import juego.menu.BtnNuevo_click;
 import juego.menu.BtnPausa_click;
-import juego.tipos_de_datos.EstadoPartida;
 
 /**
  * 
@@ -36,6 +35,7 @@ import juego.tipos_de_datos.EstadoPartida;
 @SuppressWarnings("serial")
 public final class Ejecutable extends DoubleBuffering {
 	private MotorGrafico motor_grafico;
+	private Juego juego;
 
 	/**
 	 * 
@@ -47,9 +47,9 @@ public final class Ejecutable extends DoubleBuffering {
 		/*
 		 * Se ejecuta al inicio de carga del applet.
 		 */
-		this.motor_grafico = new MotorGrafico(this);
+		this.motor_grafico = new MotorGrafico(this, this.juego);
 		Menu.agregar_menu(this);
-		Juego.iniciar_elementos();
+		this.juego = new Juego();
 		this.cargar_eventos();
 	}
 
@@ -66,37 +66,14 @@ public final class Ejecutable extends DoubleBuffering {
 		/*
 		 * Bucle de juego.
 		 */
-		if (Juego.estado == EstadoPartida.jugando) {
-
-			Juego.nave_jugador.movimiento();
-
-			if (Juego.nave_jugador.disparo != null) {
-				Juego.nave_jugador.disparo.movimiento();
-			}
-
-			for (int i = 0; i < Juego.bichos.length; i++) {
-				if (Juego.bichos[i] != null) {
-					if (Juego.bichos[i].destruido) {
-						Juego.bichos[i].segundos_destruido++;
-
-						if (Juego.bichos[i].segundos_destruido == 4) {
-							Juego.bichos[i] = null;
-						}
-					} else {
-						Juego.bichos[i].movimiento();
-					}
-				}
-			}
-
-			Juego.ia.ejecutar();
-		}
+		this.juego.ejecutar();
 	}
 
 	private void cargar_eventos() {
 		/*
 		 * Aqui se agregan todos los eventos necesarios.
 		 */
-		KeyListener Teclado = new Teclado();
+		KeyListener Teclado = new Teclado(this.juego);
 
 		// Controles de usuario.
 		this.addKeyListener(Teclado); // Eventos de teclado.
@@ -104,7 +81,7 @@ public final class Ejecutable extends DoubleBuffering {
 		Menu.btnPausa.addKeyListener(Teclado);
 
 		// Acciones de menu.
-		Menu.btnNuevo.addMouseListener(new BtnNuevo_click());
-		Menu.btnPausa.addMouseListener(new BtnPausa_click());
+		Menu.btnNuevo.addMouseListener(new BtnNuevo_click(this.juego));
+		Menu.btnPausa.addMouseListener(new BtnPausa_click(this.juego));
 	}
 }

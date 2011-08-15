@@ -31,6 +31,22 @@ import juego.tipos_de_datos.EstadoPartida;
 public final class Teclado implements KeyListener {
 	/**
 	 * 
+	 * Variables
+	 * 
+	 */
+	private Juego puntero_juego;
+
+	/**
+	 * 
+	 * Constructor
+	 * 
+	 */
+	public Teclado(Juego juego) {
+		this.puntero_juego = juego;
+	}
+
+	/**
+	 * 
 	 * Metodos
 	 * 
 	 */
@@ -39,24 +55,24 @@ public final class Teclado implements KeyListener {
 		/*
 		 * Evento de teclado al presionar una tecla.
 		 */
-		if (Juego.estado == EstadoPartida.jugando) {
+		if (this.puntero_juego.estado == EstadoPartida.jugando) {
 
 			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 				// Si pulsa la tecla de flecha izquierda...
 
-				Juego.nave_jugador.estado = EstadoObjetoMovil.left;
+				this.puntero_juego.nave_jugador.estado = EstadoObjetoMovil.left;
 			} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 				// Si pulsa la tecla de flecha derecha...
 
-				Juego.nave_jugador.estado = EstadoObjetoMovil.right;
+				this.puntero_juego.nave_jugador.estado = EstadoObjetoMovil.right;
 			} else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 				// Si pulsa la tecla espacio...
 
-				Juego.nave_jugador.disparar();
+				this.puntero_juego.nave_jugador.disparar();
 			} else {
 				// Si ha pulsado otra tecla...
 
-				Juego.nave_jugador.estado = EstadoObjetoMovil.parado;
+				this.puntero_juego.nave_jugador.estado = EstadoObjetoMovil.parado;
 			}
 		}
 	}
@@ -66,8 +82,8 @@ public final class Teclado implements KeyListener {
 		/*
 		 * Evento de teclado al soltar una tecla.
 		 */
-		if (Juego.estado == EstadoPartida.jugando) {
-			Juego.nave_jugador.estado = EstadoObjetoMovil.parado;
+		if (this.puntero_juego.estado == EstadoPartida.jugando) {
+			this.puntero_juego.nave_jugador.estado = EstadoObjetoMovil.parado;
 		}
 	}
 
