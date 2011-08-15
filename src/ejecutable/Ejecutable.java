@@ -47,9 +47,9 @@ public final class Ejecutable extends DoubleBuffering {
 		/*
 		 * Se ejecuta al inicio de carga del applet.
 		 */
+		this.juego = new Juego();
 		this.motor_grafico = new MotorGrafico(this, this.juego);
 		Menu.agregar_menu(this);
-		this.juego = new Juego();
 		this.cargar_eventos();
 	}
 

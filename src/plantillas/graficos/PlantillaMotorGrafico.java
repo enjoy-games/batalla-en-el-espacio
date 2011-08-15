@@ -34,8 +34,8 @@ public abstract class PlantillaMotorGrafico {
 	 * Variables
 	 * 
 	 */
-	protected Applet ejecutable;
 	protected final String directorio_img = "juego/img/";
+	protected Applet ejecutable;
 	protected PlantillaJuego puntero_juego;
 
 	/**
@@ -45,12 +45,12 @@ public abstract class PlantillaMotorGrafico {
 	 */
 	protected abstract void cargar_imagenes();
 
-	protected Image abrir_fichero_imagen(String nombre) {
+	protected final Image abrir_fichero_imagen(String nombre) {
 		return this.ejecutable.getImage(this.ejecutable.getCodeBase(),
 				this.directorio_img + nombre);
 	}
 
-	public void ejecutar(Graphics g) {
+	public final void ejecutar(Graphics g) {
 		if (this.puntero_juego.estado == EstadoPartida.menu_principal) {
 			this.mostrar_menu_principal(g);
 		} else if (this.puntero_juego.estado == EstadoPartida.jugando) {

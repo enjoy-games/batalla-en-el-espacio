@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import plantillas.elementos.ObjetoMovil;
+import plantillas.graficos.PlantillaMotorGrafico;
 import juego.Juego;
 import juego.elementos.Bicho;
 
@@ -28,7 +29,7 @@ import juego.elementos.Bicho;
  * this program. If not, see <http://www.gnu.org/licenses/>
  * 
  */
-public class MotorGrafico extends plantillas.graficos.PlantillaMotorGrafico {
+public class MotorGrafico extends PlantillaMotorGrafico {
 	/**
 	 * 
 	 * Variables
@@ -48,7 +49,13 @@ public class MotorGrafico extends plantillas.graficos.PlantillaMotorGrafico {
 	 */
 	public MotorGrafico(Applet ejecutable, Juego juego) {
 		super.ejecutable = ejecutable;
+
+		// Para que la clase padre tenga acceso.
+		super.puntero_juego = juego;
+
+		// Para que esta clase tenga acceso a los atributos de 'juego.Juego'.
 		this.puntero_juego = juego;
+
 		this.cargar_imagenes();
 	}
 

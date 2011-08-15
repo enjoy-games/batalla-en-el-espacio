@@ -1,10 +1,11 @@
 package juego.elementos;
 
-import juego.Juego;
 import plantillas.colisiones.MotorColisiones;
 import plantillas.elementos.ObjetoMovil;
 import plantillas.elementos.PuntoMovil;
 import plantillas.tipos_de_datos.EstadoObjetoMovil;
+
+import juego.Juego;
 
 /**
  * 
@@ -55,6 +56,7 @@ public final class Bicho extends ObjetoMovil {
 		super.alto = alto;
 		this.imagen_actual = 0;
 		this.destruido = false;
+		this.puntero_juego = juego;
 	}
 
 	/**

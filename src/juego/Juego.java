@@ -1,5 +1,6 @@
 package juego;
 
+import plantillas.PlantillaJuego;
 import juego.elementos.Bicho;
 import juego.elementos.Disparo;
 import juego.elementos.InteligenciaArtificial;
@@ -26,7 +27,7 @@ import juego.tipos_de_datos.EstadoPartida;
  * this program. If not, see <http://www.gnu.org/licenses/>
  * 
  */
-public class Juego extends plantillas.PlantillaJuego {
+public class Juego extends PlantillaJuego {
 	/**
 	 * 
 	 * Variables
