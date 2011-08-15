@@ -28,7 +28,7 @@ import juego.elementos.Bicho;
  * this program. If not, see <http://www.gnu.org/licenses/>
  * 
  */
-public class MotorGrafico extends plantillas.graficos.MotorGrafico {
+public class MotorGrafico extends plantillas.graficos.PlantillaMotorGrafico {
 	/**
 	 * 
 	 * Variables

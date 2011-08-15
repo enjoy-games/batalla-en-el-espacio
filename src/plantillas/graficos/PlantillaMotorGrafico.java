@@ -4,10 +4,11 @@ import java.applet.Applet;
 import java.awt.Graphics;
 import java.awt.Image;
 
-import juego.Juego;
+import plantillas.PlantillaJuego;
+
 import juego.tipos_de_datos.EstadoPartida;
 
-public abstract class MotorGrafico {
+public abstract class PlantillaMotorGrafico {
 	/**
 	 * 
 	 * Variables
@@ -15,6 +16,7 @@ public abstract class MotorGrafico {
 	 */
 	protected Applet ejecutable;
 	protected final String directorio_img = "juego/img/";
+	protected PlantillaJuego puntero_juego;
 
 	/**
 	 * 
@@ -29,13 +31,13 @@ public abstract class MotorGrafico {
 	}
 
 	public void ejecutar(Graphics g) {
-		if (Juego.estado == EstadoPartida.menu_principal) {
+		if (this.puntero_juego.estado == EstadoPartida.menu_principal) {
 			this.mostrar_menu_principal(g);
-		} else if (Juego.estado == EstadoPartida.jugando) {
+		} else if (this.puntero_juego.estado == EstadoPartida.jugando) {
 			this.mostrar_juego(g);
-		} else if (Juego.estado == EstadoPartida.pausa) {
+		} else if (this.puntero_juego.estado == EstadoPartida.pausa) {
 			this.mostrar_pausa(g);
-		} else if (Juego.estado == EstadoPartida.clasificacion) {
+		} else if (this.puntero_juego.estado == EstadoPartida.clasificacion) {
 			this.mostrar_clasificacion(g);
 		}
 	}

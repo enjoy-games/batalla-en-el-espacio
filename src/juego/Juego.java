@@ -26,13 +26,12 @@ import juego.tipos_de_datos.EstadoPartida;
  * this program. If not, see <http://www.gnu.org/licenses/>
  * 
  */
-public class Juego {
+public class Juego extends plantillas.PlantillaJuego {
 	/**
 	 * 
 	 * Variables
 	 * 
 	 */
-	public EstadoPartida estado;
 	public int numero_de_enemigos = 40;
 	public NaveJugador nave_jugador;
 	public Disparo disparo_jugador;
@@ -49,7 +48,7 @@ public class Juego {
 		/*
 		 * Instancia los objetos y establece sus propiedades.
 		 */
-		this.estado = EstadoPartida.menu_principal;
+		super.estado = EstadoPartida.menu_principal;
 
 		// Elementos de juego.
 
@@ -76,11 +75,12 @@ public class Juego {
 	 * Metodos
 	 * 
 	 */
+	@Override
 	public void ejecutar() {
 		/*
 		 * Bucle de juego.
 		 */
-		if (this.estado == EstadoPartida.jugando) {
+		if (super.estado == EstadoPartida.jugando) {
 
 			this.nave_jugador.movimiento();
 
@@ -103,29 +103,6 @@ public class Juego {
 			}
 
 			this.ia.ejecutar();
-		}
-	}
-
-	public void comenzar_partida() {
-		/*
-		 * Establece los datos necesarios para comenzar una partida.
-		 */
-		if (this.estado == EstadoPartida.menu_principal) {
-			this.estado = EstadoPartida.jugando;
-		}
-	}
-
-	public void pausa(boolean pausar) {
-		/*
-		 * Pausa la partida o la reanuda.
-		 */
-		if (this.estado == EstadoPartida.jugando
-				|| this.estado == EstadoPartida.pausa) {
-			if (pausar) {
-				this.estado = EstadoPartida.pausa;
-			} else {
-				this.estado = EstadoPartida.jugando;
-			}
 		}
 	}
 
