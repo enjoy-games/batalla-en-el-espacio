@@ -1,7 +1,7 @@
 package juego.elementos;
 
 import juego.Juego;
-import juego.motor_colisiones.MotorColisiones;
+import plantillas.colisiones.MotorColisiones;
 import plantillas.elementos.ObjetoMovil;
 import plantillas.elementos.PuntoMovil;
 import plantillas.tipos_de_datos.EstadoObjetoMovil;

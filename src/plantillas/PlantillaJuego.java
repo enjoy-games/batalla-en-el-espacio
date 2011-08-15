@@ -4,7 +4,7 @@ import juego.tipos_de_datos.EstadoPartida;
 
 /**
  * 
- * Implementa los elementos y reglas del juego.
+ * Plantilla para facilitar las tareas basicas de un juego.
  * 
  * Copyright (C) 2011 Sergio Lindo
  * 

@@ -1,4 +1,4 @@
-package juego.motor_colisiones;
+package plantillas.colisiones;
 
 /**
  * 
