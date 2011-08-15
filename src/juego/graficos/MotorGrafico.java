@@ -38,6 +38,7 @@ public class MotorGrafico extends PlantillaMotorGrafico {
 	private Image imagen_nave_jugador;
 	private final int duplicacion = 8;
 	private Image[][] imagen_bicho = new Image[2][duplicacion];
+	private int[] imagen_bicho_actual;
 	private Image imagen_explosion;
 	private Juego puntero_juego;
 
@@ -54,6 +55,12 @@ public class MotorGrafico extends PlantillaMotorGrafico {
 
 		// Para que esta clase tenga acceso a los atributos de 'juego.Juego'.
 		this.puntero_juego = juego;
+
+		this.imagen_bicho_actual = new int[this.puntero_juego.numero_de_enemigos];
+
+		for (int i = 0; i < this.imagen_bicho_actual.length; i++) {
+			this.imagen_bicho_actual[i] = 0;
+		}
 
 		this.cargar_imagenes();
 	}
@@ -165,7 +172,7 @@ public class MotorGrafico extends PlantillaMotorGrafico {
 		if (this.puntero_juego.bichos[indice_bicho].destruido) {
 			imagen = this.imagen_explosion;
 		} else {
-			imagen = this.imagen_bicho[indice_bicho % 2][this.puntero_juego.bichos[indice_bicho].imagen_actual];
+			imagen = this.imagen_bicho[indice_bicho % 2][this.imagen_bicho_actual[indice_bicho]];
 		}
 
 		g.drawImage(
@@ -174,10 +181,10 @@ public class MotorGrafico extends PlantillaMotorGrafico {
 				this.puntero_juego.bichos[indice_bicho].esquina_superior_izquierda.y_pos,
 				super.ejecutable);
 
-		if (this.puntero_juego.bichos[indice_bicho].imagen_actual < this.imagen_bicho[0].length - 1) {
-			this.puntero_juego.bichos[indice_bicho].imagen_actual += 1;
+		if (this.imagen_bicho_actual[indice_bicho] < this.imagen_bicho[0].length - 1) {
+			this.imagen_bicho_actual[indice_bicho] += 1;
 		} else {
-			this.puntero_juego.bichos[indice_bicho].imagen_actual = 0;
+			this.imagen_bicho_actual[indice_bicho] = 0;
 		}
 	}
 

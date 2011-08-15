@@ -34,7 +34,6 @@ public final class Bicho extends ObjetoMovil {
 	 * 
 	 */
 	public int indice_bicho;
-	public int imagen_actual;
 	public boolean destruido;
 	public int segundos_destruido;
 	private Juego puntero_juego;
@@ -54,7 +53,6 @@ public final class Bicho extends ObjetoMovil {
 		super.esquina_superior_izquierda.velocidad_y = velocidad_y;
 		super.ancho = ancho;
 		super.alto = alto;
-		this.imagen_actual = 0;
 		this.destruido = false;
 		this.puntero_juego = juego;
 	}
