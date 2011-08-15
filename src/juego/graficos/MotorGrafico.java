@@ -37,8 +37,7 @@ public class MotorGrafico extends PlantillaMotorGrafico {
 	 */
 	private Image imagen_nave_jugador;
 	private final int duplicacion = 8;
-	private Image[] imagen_bicho1 = new Image[duplicacion];
-	private Image[] imagen_bicho2 = new Image[duplicacion];
+	private Image[][] imagen_bicho = new Image[2][duplicacion];
 	private Image imagen_explosion;
 	private Juego puntero_juego;
 
@@ -91,8 +90,8 @@ public class MotorGrafico extends PlantillaMotorGrafico {
 				aux_imagen2 = imagen2b;
 			}
 
-			this.imagen_bicho1[i] = aux_imagen1;
-			this.imagen_bicho2[i] = aux_imagen2;
+			this.imagen_bicho[0][i] = aux_imagen1;
+			this.imagen_bicho[1][i] = aux_imagen2;
 		}
 
 		this.imagen_explosion = this.abrir_fichero_imagen("explosion.gif");
@@ -131,7 +130,7 @@ public class MotorGrafico extends PlantillaMotorGrafico {
 
 		for (int i = 0; i < this.puntero_juego.bichos.length; i++) {
 			if (this.puntero_juego.bichos[i] != null) {
-				this.dibujar_bicho(g, this.puntero_juego.bichos[i]);
+				this.dibujar_bicho(g, i);
 			}
 		}
 	}
@@ -157,25 +156,28 @@ public class MotorGrafico extends PlantillaMotorGrafico {
 				disparo.alto);
 	}
 
-	private void dibujar_bicho(Graphics g, ObjetoMovil bicho) {
+	private void dibujar_bicho(Graphics g, int indice_bicho) {
 		/*
 		 * Dibuja el elemento segun sus propiedades.
 		 */
 		Image imagen;
 
-		if (((Bicho) bicho).destruido) {
+		if (this.puntero_juego.bichos[indice_bicho].destruido) {
 			imagen = this.imagen_explosion;
 		} else {
-			imagen = this.imagen_bicho1[((Bicho) bicho).imagen_actual];
+			imagen = this.imagen_bicho[indice_bicho % 2][this.puntero_juego.bichos[indice_bicho].imagen_actual];
 		}
 
-		g.drawImage(imagen, bicho.esquina_superior_izquierda.x_pos,
-				bicho.esquina_superior_izquierda.y_pos, super.ejecutable);
+		g.drawImage(
+				imagen,
+				this.puntero_juego.bichos[indice_bicho].esquina_superior_izquierda.x_pos,
+				this.puntero_juego.bichos[indice_bicho].esquina_superior_izquierda.y_pos,
+				super.ejecutable);
 
-		if (((Bicho) bicho).imagen_actual < this.imagen_bicho1.length - 1) {
-			((Bicho) bicho).imagen_actual += 1;
+		if (this.puntero_juego.bichos[indice_bicho].imagen_actual < this.imagen_bicho[0].length - 1) {
+			this.puntero_juego.bichos[indice_bicho].imagen_actual += 1;
 		} else {
-			((Bicho) bicho).imagen_actual = 0;
+			this.puntero_juego.bichos[indice_bicho].imagen_actual = 0;
 		}
 	}
 
