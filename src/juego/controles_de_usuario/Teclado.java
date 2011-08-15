@@ -69,10 +69,6 @@ public final class Teclado implements KeyListener {
 				// Si pulsa la tecla espacio...
 
 				this.puntero_juego.nave_jugador.disparar();
-			} else {
-				// Si ha pulsado otra tecla...
-
-				this.puntero_juego.nave_jugador.estado = EstadoObjetoMovil.parado;
 			}
 		}
 	}
@@ -83,7 +79,10 @@ public final class Teclado implements KeyListener {
 		 * Evento de teclado al soltar una tecla.
 		 */
 		if (this.puntero_juego.estado == EstadoPartida.jugando) {
-			this.puntero_juego.nave_jugador.estado = EstadoObjetoMovil.parado;
+			if (e.getKeyCode() == KeyEvent.VK_LEFT
+					|| e.getKeyCode() == KeyEvent.VK_RIGHT) {
+				this.puntero_juego.nave_jugador.estado = EstadoObjetoMovil.parado;
+			}
 		}
 	}
 
