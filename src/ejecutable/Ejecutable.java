@@ -8,7 +8,7 @@ import plantillas.menu.Menu;
 
 import juego.Juego;
 import juego.controles_de_usuario.Teclado;
-import juego.graficos.Graficos;
+import juego.graficos.MotorGrafico;
 import juego.menu.BtnNuevo_click;
 import juego.menu.BtnPausa_click;
 import juego.tipos_de_datos.EstadoPartida;
@@ -35,7 +35,7 @@ import juego.tipos_de_datos.EstadoPartida;
  */
 @SuppressWarnings("serial")
 public final class Ejecutable extends DoubleBuffering {
-	private Graficos motor_grafico;
+	private MotorGrafico motor_grafico;
 
 	/**
 	 * 
@@ -47,7 +47,7 @@ public final class Ejecutable extends DoubleBuffering {
 		/*
 		 * Se ejecuta al inicio de carga del applet.
 		 */
-		this.motor_grafico = new Graficos(this);
+		this.motor_grafico = new MotorGrafico(this);
 		Menu.agregar_menu(this);
 		Juego.iniciar_elementos();
 		this.cargar_eventos();

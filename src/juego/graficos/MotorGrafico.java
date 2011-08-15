@@ -7,7 +7,6 @@ import java.awt.Image;
 import plantillas.elementos.ObjetoMovil;
 import juego.Juego;
 import juego.elementos.Bicho;
-import juego.tipos_de_datos.EstadoPartida;
 
 /**
  * 
@@ -29,14 +28,12 @@ import juego.tipos_de_datos.EstadoPartida;
  * this program. If not, see <http://www.gnu.org/licenses/>
  * 
  */
-public class Graficos {
+public class MotorGrafico extends plantillas.graficos.MotorGrafico {
 	/**
 	 * 
 	 * Variables
 	 * 
 	 */
-	private Applet ejecutable;
-	private final String directorio_img = "juego/img/";
 	private Image imagen_nave_jugador;
 	private final int duplicacion = 8;
 	private Image[] imagen_bicho1 = new Image[duplicacion];
@@ -48,8 +45,8 @@ public class Graficos {
 	 * Constructor
 	 * 
 	 */
-	public Graficos(Applet ejecutable) {
-		this.ejecutable = ejecutable;
+	public MotorGrafico(Applet ejecutable) {
+		super.ejecutable = ejecutable;
 		this.cargar_imagenes();
 	}
 
@@ -58,7 +55,8 @@ public class Graficos {
 	 * Metodos
 	 * 
 	 */
-	private void cargar_imagenes() {
+	@Override
+	protected void cargar_imagenes() {
 		/*
 		 * Cargan en memoria las imagenes necesarias.
 		 */
@@ -91,25 +89,6 @@ public class Graficos {
 		this.imagen_explosion = this.abrir_fichero_imagen("explosion.gif");
 	}
 
-	private Image abrir_fichero_imagen(String nombre) {
-		return this.ejecutable.getImage(this.ejecutable.getCodeBase(),
-				this.directorio_img + nombre);
-	}
-
-	public void ejecutar(Graphics g) {
-		this.mostrar_fondo(g);
-
-		if (Juego.estado == EstadoPartida.menu_principal) {
-			this.mostrar_menu_principal(g);
-		} else if (Juego.estado == EstadoPartida.jugando) {
-			this.mostrar_juego(g);
-		} else if (Juego.estado == EstadoPartida.pausa) {
-			this.mostrar_pausa(g);
-		} else if (Juego.estado == EstadoPartida.clasificacion) {
-			this.mostrar_clasificacion(g);
-		}
-	}
-
 	private void mostrar_fondo(Graphics g) {
 		/*
 		 * Dibuja el fondo.
@@ -118,19 +97,23 @@ public class Graficos {
 		g.fillRect(0, 33, 400, 400);
 	}
 
-	private void mostrar_menu_principal(Graphics g) {
+	@Override
+	protected void mostrar_menu_principal(Graphics g) {
 		/*
 		 * Dibuja la pantalla del menu principal.
 		 */
+		this.mostrar_fondo(g);
 		g.setColor(Color.white);
 		g.drawString("Pulsa el boton 'Nuevo' para comenzar la partida.", 100,
 				100);
 	}
 
-	private void mostrar_juego(Graphics g) {
+	@Override
+	protected void mostrar_juego(Graphics g) {
 		/*
 		 * Dibuja los elementos del juego.
 		 */
+		this.mostrar_fondo(g);
 		this.dibujar_nave_jugador(g);
 
 		if (Juego.nave_jugador.disparo != null) {
@@ -152,7 +135,7 @@ public class Graficos {
 		g.drawImage(this.imagen_nave_jugador,
 				Juego.nave_jugador.esquina_superior_izquierda.x_pos,
 				Juego.nave_jugador.esquina_superior_izquierda.y_pos,
-				this.ejecutable);
+				super.ejecutable);
 	}
 
 	private void dibujar_disparo(Graphics g, ObjetoMovil disparo) {
@@ -178,7 +161,7 @@ public class Graficos {
 		}
 
 		g.drawImage(imagen, bicho.esquina_superior_izquierda.x_pos,
-				bicho.esquina_superior_izquierda.y_pos, ejecutable);
+				bicho.esquina_superior_izquierda.y_pos, super.ejecutable);
 
 		if (((Bicho) bicho).imagen_actual < this.imagen_bicho1.length - 1) {
 			((Bicho) bicho).imagen_actual += 1;
@@ -196,7 +179,8 @@ public class Graficos {
 		g.drawString("Vida", 0, 0);
 	}
 
-	private void mostrar_pausa(Graphics g) {
+	@Override
+	protected void mostrar_pausa(Graphics g) {
 		/*
 		 * Dibuja la pantalla de pausa.
 		 */
@@ -204,7 +188,8 @@ public class Graficos {
 		g.drawString("Juego en pausa. Pulse el boton 'Reanudar'.", 100, 100);
 	}
 
-	private void mostrar_clasificacion(Graphics g) {
+	@Override
+	protected void mostrar_clasificacion(Graphics g) {
 		/*
 		 * Dibuja la pantalla de clasificacion.
 		 */
