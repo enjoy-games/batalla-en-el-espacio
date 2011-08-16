@@ -2,6 +2,7 @@ package juego;
 
 import plantillas.PlantillaJuego;
 import juego.elementos.Bicho;
+import juego.elementos.ContadorVida;
 import juego.elementos.Disparo;
 import juego.elementos.InteligenciaArtificial;
 import juego.elementos.NaveJugador;
@@ -36,6 +37,7 @@ public class Juego extends PlantillaJuego {
 	public int numero_de_enemigos = 40;
 	public NaveJugador nave_jugador;
 	public Disparo disparo_jugador;
+	public ContadorVida contador_vida;
 	public Bicho[] bichos = new Bicho[this.numero_de_enemigos];
 	public Disparo[] disparo_bichos = new Disparo[this.numero_de_enemigos];
 	public InteligenciaArtificial ia;
@@ -54,6 +56,8 @@ public class Juego extends PlantillaJuego {
 		// Elementos de juego.
 
 		this.nave_jugador = new NaveJugador(200 - 20, 400 - 40, 40, 40, 8, this);
+
+		this.contador_vida = new ContadorVida(10, 410, 15, 20);
 
 		// Enemigos
 		int x = 0, y = 33, ancho = 40, alto = 40;
