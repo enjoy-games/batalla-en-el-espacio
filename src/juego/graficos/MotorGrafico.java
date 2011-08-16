@@ -140,6 +140,8 @@ public class MotorGrafico extends PlantillaMotorGrafico {
 				this.dibujar_bicho(g, i);
 			}
 		}
+
+		this.dibujar_contador(g);
 	}
 
 	private void dibujar_nave_jugador(Graphics g) {
@@ -192,9 +194,39 @@ public class MotorGrafico extends PlantillaMotorGrafico {
 		/*
 		 * Dibuja el contador, segun sus propiedades.
 		 */
-		// TODO - Contador de vida con marco y rayas (Tipo Shinobi).
+		int x;
+		int y;
+		int ancho;
+		int alto;
+
+		// g.drawString("Vida", 0, 0);
+
+		// Barra superior.
+		x = this.puntero_juego.contador_vida.esquina_superior_izquierda.x_pos;
+		y = this.puntero_juego.contador_vida.esquina_superior_izquierda.y_pos;
+		ancho = this.puntero_juego.contador_vida.ancho;
+		alto = 3;
 		g.setColor(Color.white);
-		g.drawString("Vida", 0, 0);
+		g.drawRect(x, y, ancho, alto);
+
+		// Barras de vida.
+		x = this.puntero_juego.contador_vida.esquina_superior_izquierda.x_pos + 1;
+		y = this.puntero_juego.contador_vida.esquina_superior_izquierda.y_pos + 5;
+		ancho = 3;
+		alto = 10;
+		g.setColor(Color.red);
+		for (int i = this.puntero_juego.contador_vida.contador_vida; i > 0; i--) {
+			g.drawRect(x, y, ancho, alto);
+			x += 5;
+		}
+
+		// Barra inferior.
+		x = this.puntero_juego.contador_vida.esquina_superior_izquierda.x_pos;
+		y = this.puntero_juego.contador_vida.esquina_superior_izquierda.y_pos + 14;
+		ancho = this.puntero_juego.contador_vida.ancho;
+		alto = 3;
+		g.setColor(Color.white);
+		g.drawRect(x, y, ancho, alto);
 	}
 
 	@Override
