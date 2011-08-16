@@ -7,7 +7,6 @@ import java.awt.Image;
 import plantillas.elementos.ObjetoMovil;
 import plantillas.graficos.PlantillaMotorGrafico;
 import juego.Juego;
-import juego.elementos.Bicho;
 
 /**
  * 
@@ -109,7 +108,7 @@ public class MotorGrafico extends PlantillaMotorGrafico {
 		 * Dibuja el fondo.
 		 */
 		g.setColor(Color.black);
-		g.fillRect(0, 33, 400, 400);
+		g.fillRect(0, 33, 400, 440);
 	}
 
 	@Override
@@ -141,7 +140,7 @@ public class MotorGrafico extends PlantillaMotorGrafico {
 			}
 		}
 
-		this.dibujar_contador(g);
+		this.dibujar_barra_info(g);
 	}
 
 	private void dibujar_nave_jugador(Graphics g) {
@@ -190,6 +189,29 @@ public class MotorGrafico extends PlantillaMotorGrafico {
 		}
 	}
 
+	private void dibujar_barra_info(Graphics g) {
+		int x;
+		int y;
+		int ancho;
+		int alto;
+
+		// Fondo.
+		x = 1;
+		y = 401;
+		ancho = 396;
+		alto = 36;
+		g.setColor(Color.gray);
+		g.draw3DRect(x, y, ancho, alto, true);
+
+		// Letrero.
+		x += 10;
+		y += 20;
+		g.setColor(Color.white);
+		g.drawString("Vida", x, y);
+
+		this.dibujar_contador(g);
+	}
+
 	private void dibujar_contador(Graphics g) {
 		/*
 		 * Dibuja el contador, segun sus propiedades.
@@ -199,34 +221,26 @@ public class MotorGrafico extends PlantillaMotorGrafico {
 		int ancho;
 		int alto;
 
-		// g.drawString("Vida", 0, 0);
-
 		// Barra superior.
-		x = this.puntero_juego.contador_vida.esquina_superior_izquierda.x_pos;
-		y = this.puntero_juego.contador_vida.esquina_superior_izquierda.y_pos;
-		ancho = this.puntero_juego.contador_vida.ancho;
+		x = 40;
+		y = 410;
+		ancho = 17;
 		alto = 3;
 		g.setColor(Color.white);
 		g.fillRect(x, y, ancho, alto);
 
+		// Barra inferior.
+		g.setColor(Color.white);
+		g.fillRect(x, y + 15, ancho, alto);
+
 		// Barras de vida.
-		x = this.puntero_juego.contador_vida.esquina_superior_izquierda.x_pos + 1;
-		y = this.puntero_juego.contador_vida.esquina_superior_izquierda.y_pos + 5;
 		ancho = 3;
 		alto = 10;
 		g.setColor(Color.red);
-		for (int i = this.puntero_juego.contador_vida.contador_vida; i > 0; i--) {
-			g.fillRect(x, y, ancho, alto);
+		for (int i = this.puntero_juego.nave_jugador.vida; i > 0; i--) {
+			g.fillRect(x + 2, y + 4, ancho, alto);
 			x += 5;
 		}
-
-		// Barra inferior.
-		x = this.puntero_juego.contador_vida.esquina_superior_izquierda.x_pos;
-		y = this.puntero_juego.contador_vida.esquina_superior_izquierda.y_pos + 17;
-		ancho = this.puntero_juego.contador_vida.ancho;
-		alto = 3;
-		g.setColor(Color.white);
-		g.fillRect(x, y, ancho, alto);
 	}
 
 	@Override
