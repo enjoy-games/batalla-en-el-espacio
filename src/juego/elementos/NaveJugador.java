@@ -1,6 +1,7 @@
 package juego.elementos;
 
 import juego.Juego;
+import juego.tipos_de_datos.EstadoPartida;
 import plantillas.elementos.ObjetoMovil;
 import plantillas.elementos.PuntoMovil;
 import plantillas.tipos_de_datos.EstadoObjetoMovil;
@@ -116,6 +117,10 @@ public final class NaveJugador extends ObjetoMovil {
 	}
 
 	public void destruir() {
-		// TODO
+		this.vida -= 1;
+
+		if (this.vida < 0) {
+			this.puntero_juego.estado = EstadoPartida.clasificacion;
+		}
 	}
 }
