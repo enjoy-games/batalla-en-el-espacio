@@ -84,7 +84,7 @@ public final class Bicho extends ObjetoMovil {
 
 	public void disparar() {
 		if (this.puntero_juego.disparo_bichos[this.indice_bicho] != null
-				&& this.puntero_juego.disparo_bichos[this.indice_bicho].esquina_superior_izquierda.y_pos <= 0) {
+				&& this.puntero_juego.disparo_bichos[this.indice_bicho].esquina_superior_izquierda.y_pos >= 400) {
 			this.puntero_juego.disparo_bichos[this.indice_bicho] = null;
 		}
 
