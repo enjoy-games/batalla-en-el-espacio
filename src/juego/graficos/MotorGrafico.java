@@ -103,14 +103,6 @@ public class MotorGrafico extends PlantillaMotorGrafico {
 		this.imagen_explosion = this.abrir_fichero_imagen("explosion.gif");
 	}
 
-	private void mostrar_fondo(Graphics g) {
-		/*
-		 * Dibuja el fondo.
-		 */
-		g.setColor(Color.black);
-		g.fillRect(0, 33, 400, 440);
-	}
-
 	@Override
 	protected void mostrar_menu_principal(Graphics g) {
 		/*
@@ -128,21 +120,23 @@ public class MotorGrafico extends PlantillaMotorGrafico {
 		 * Dibuja los elementos del juego.
 		 */
 		this.mostrar_fondo(g);
-		this.dibujar_nave_jugador(g);
 
 		if (this.puntero_juego.disparo_jugador != null) {
 			this.dibujar_disparo(g, this.puntero_juego.disparo_jugador);
 		}
 
 		for (int i = 0; i < this.puntero_juego.bichos.length; i++) {
+			if (this.puntero_juego.disparo_bichos[i] != null
+					&& this.puntero_juego.disparo_bichos[i].esquina_superior_izquierda.y_pos < 400) {
+				this.dibujar_disparo(g, this.puntero_juego.disparo_bichos[i]);
+			}
+
 			if (this.puntero_juego.bichos[i] != null) {
 				this.dibujar_bicho(g, i);
 			}
-
-			if (this.puntero_juego.disparo_bichos[i] != null) {
-				this.dibujar_disparo(g, this.puntero_juego.disparo_bichos[i]);
-			}
 		}
+
+		this.dibujar_nave_jugador(g);
 
 		this.dibujar_barra_info(g);
 	}
@@ -262,6 +256,15 @@ public class MotorGrafico extends PlantillaMotorGrafico {
 		/*
 		 * Dibuja la pantalla de clasificacion.
 		 */
+		this.mostrar_fondo(g);
 		// TODO
+	}
+
+	private void mostrar_fondo(Graphics g) {
+		/*
+		 * Dibuja el fondo.
+		 */
+		g.setColor(Color.black);
+		g.fillRect(0, 33, 400, 440);
 	}
 }
