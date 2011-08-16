@@ -31,6 +31,7 @@ public final class NaveJugador extends ObjetoMovil {
 	 * Variables
 	 * 
 	 */
+	public int vida;
 	private Juego puntero_juego;
 
 	/**
@@ -47,6 +48,7 @@ public final class NaveJugador extends ObjetoMovil {
 		// velocidad_y = 0
 		super.ancho = ancho;
 		super.alto = alto;
+		this.vida = 3;
 		this.puntero_juego = juego;
 	}
 
