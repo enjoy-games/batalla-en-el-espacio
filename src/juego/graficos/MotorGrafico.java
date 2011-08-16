@@ -202,6 +202,7 @@ public class MotorGrafico extends PlantillaMotorGrafico {
 		/*
 		 * Dibuja la pantalla de pausa.
 		 */
+		this.mostrar_fondo(g);
 		g.setColor(Color.white);
 		g.drawString("Juego en pausa. Pulse el boton 'Reanudar'.", 100, 100);
 	}
