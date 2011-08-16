@@ -37,14 +37,7 @@ public abstract class PlantillaJuego {
 	 */
 	public abstract void ejecutar();
 
-	public final void comenzar_partida() {
-		/*
-		 * Establece los datos necesarios para comenzar una partida.
-		 */
-		if (this.estado == EstadoPartida.menu_principal) {
-			this.estado = EstadoPartida.jugando;
-		}
-	}
+	public abstract void comenzar_partida();
 
 	public final void pausa(boolean pausar) {
 		/*

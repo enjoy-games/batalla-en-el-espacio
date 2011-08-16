@@ -46,6 +46,16 @@ public class Juego extends PlantillaJuego {
 	 * 
 	 */
 	public Juego() {
+		this.iniciar_elementos();
+	}
+
+	/**
+	 * 
+	 * Metodos
+	 * 
+	 */
+	private void iniciar_elementos() {
+
 		/*
 		 * Instancia los objetos y establece sus propiedades.
 		 */
@@ -69,13 +79,21 @@ public class Juego extends PlantillaJuego {
 		}
 
 		this.ia = new InteligenciaArtificial(this);
+
 	}
 
-	/**
-	 * 
-	 * Metodos
-	 * 
-	 */
+	@Override
+	public void comenzar_partida() {
+		/*
+		 * Establece los datos necesarios para comenzar una partida.
+		 */
+		if (this.estado == EstadoPartida.menu_principal
+				|| this.estado == EstadoPartida.clasificacion) {
+			this.iniciar_elementos();
+			this.estado = EstadoPartida.jugando;
+		}
+	}
+
 	@Override
 	public void ejecutar() {
 		/*
