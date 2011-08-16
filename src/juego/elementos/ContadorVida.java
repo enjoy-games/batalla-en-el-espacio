@@ -23,25 +23,25 @@ import plantillas.elementos.PuntoEstatico;
  * this program. If not, see <http://www.gnu.org/licenses/>
  * 
  */
-public final class Contador extends ObjetoEstatico {
+public final class ContadorVida extends ObjetoEstatico {
 	/**
 	 * 
 	 * Variables
 	 * 
 	 */
-	public int vida;
+	public int contador_vida;
 
 	/**
 	 * 
 	 * Constructor
 	 * 
 	 */
-	public Contador(int x_pos, int y_pos, int ancho, int alto) {
+	public ContadorVida(int x_pos, int y_pos, int ancho, int alto) {
 		super.esquina_superior_izquierda = new PuntoEstatico();
 		super.esquina_superior_izquierda.x_pos = x_pos;
 		super.esquina_superior_izquierda.y_pos = y_pos;
 		super.ancho = ancho;
 		super.alto = alto;
-		this.vida = 3;
+		this.contador_vida = 3;
 	}
 }
