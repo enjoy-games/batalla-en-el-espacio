@@ -101,6 +101,10 @@ public class Juego extends PlantillaJuego {
 						this.bichos[i].movimiento();
 					}
 				}
+
+				if (this.disparo_bichos[i] != null) {
+					this.disparo_bichos[i].movimiento();
+				}
 			}
 
 			this.ia.ejecutar();
