@@ -207,7 +207,7 @@ public class MotorGrafico extends PlantillaMotorGrafico {
 		ancho = this.puntero_juego.contador_vida.ancho;
 		alto = 3;
 		g.setColor(Color.white);
-		g.drawRect(x, y, ancho, alto);
+		g.fillRect(x, y, ancho, alto);
 
 		// Barras de vida.
 		x = this.puntero_juego.contador_vida.esquina_superior_izquierda.x_pos + 1;
@@ -216,17 +216,17 @@ public class MotorGrafico extends PlantillaMotorGrafico {
 		alto = 10;
 		g.setColor(Color.red);
 		for (int i = this.puntero_juego.contador_vida.contador_vida; i > 0; i--) {
-			g.drawRect(x, y, ancho, alto);
+			g.fillRect(x, y, ancho, alto);
 			x += 5;
 		}
 
 		// Barra inferior.
 		x = this.puntero_juego.contador_vida.esquina_superior_izquierda.x_pos;
-		y = this.puntero_juego.contador_vida.esquina_superior_izquierda.y_pos + 14;
+		y = this.puntero_juego.contador_vida.esquina_superior_izquierda.y_pos + 17;
 		ancho = this.puntero_juego.contador_vida.ancho;
 		alto = 3;
 		g.setColor(Color.white);
-		g.drawRect(x, y, ancho, alto);
+		g.fillRect(x, y, ancho, alto);
 	}
 
 	@Override
