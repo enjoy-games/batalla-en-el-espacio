@@ -138,6 +138,10 @@ public class MotorGrafico extends PlantillaMotorGrafico {
 			if (this.puntero_juego.bichos[i] != null) {
 				this.dibujar_bicho(g, i);
 			}
+
+			if (this.puntero_juego.disparo_bichos[i] != null) {
+				this.dibujar_disparo(g, this.puntero_juego.disparo_bichos[i]);
+			}
 		}
 
 		this.dibujar_barra_info(g);
