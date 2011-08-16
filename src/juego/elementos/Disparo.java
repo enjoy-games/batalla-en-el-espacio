@@ -68,20 +68,20 @@ public final class Disparo extends ObjetoMovil {
 		if (super.estado == EstadoObjetoMovil.up
 				&& this.esquina_superior_izquierda.y_pos > 0) {
 			sentido = -1;
+
+			int i;
+			if ((i = this.colision_bicho()) > -1) {
+				this.puntero_juego.bichos[i].destruir();
+				this.esquina_superior_izquierda.x_pos = -1 - this.alto;
+			}
 		} else if (super.estado == EstadoObjetoMovil.down
 				&& this.esquina_superior_izquierda.y_pos < 400) {
 			sentido = 1;
-		}
 
-		if (this.colision_nave_jugador()) {
-			this.puntero_juego.nave_jugador.destruir();
-			this.esquina_superior_izquierda.x_pos = -1 - this.alto;
-		}
-
-		int i;
-		if ((i = this.colision_bicho()) > -1) {
-			this.puntero_juego.bichos[i].destruir();
-			this.esquina_superior_izquierda.x_pos = -1 - this.alto;
+			if (this.colision_nave_jugador()) {
+				this.puntero_juego.nave_jugador.destruir();
+				this.esquina_superior_izquierda.x_pos = -1 - this.alto;
+			}
 		}
 
 		this.esquina_superior_izquierda.y_pos += this.esquina_superior_izquierda.velocidad_y
