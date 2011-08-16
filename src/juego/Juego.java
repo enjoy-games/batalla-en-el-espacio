@@ -81,6 +81,8 @@ public class Juego extends PlantillaJuego {
 		/*
 		 * Bucle de juego.
 		 */
+		int bichos_destruidos = 0;
+
 		if (super.estado == EstadoPartida.jugando) {
 
 			this.nave_jugador.movimiento();
@@ -96,14 +98,16 @@ public class Juego extends PlantillaJuego {
 
 						if (this.bichos[i].segundos_destruido == 4) {
 							this.bichos[i] = null;
-
-							if (this.bichos.length == 0) {
-								this.estado = EstadoPartida.clasificacion;
-							}
 						}
 					} else {
 						this.bichos[i].movimiento();
 					}
+				} else {
+					bichos_destruidos++;
+				}
+
+				if (bichos_destruidos == this.bichos.length) {
+					this.estado = EstadoPartida.clasificacion;
 				}
 
 				if (this.disparo_bichos[i] != null) {
