@@ -96,6 +96,10 @@ public class Juego extends PlantillaJuego {
 
 						if (this.bichos[i].segundos_destruido == 4) {
 							this.bichos[i] = null;
+
+							if (this.bichos.length == 0) {
+								this.estado = EstadoPartida.clasificacion;
+							}
 						}
 					} else {
 						this.bichos[i].movimiento();
