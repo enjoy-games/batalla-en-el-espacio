@@ -257,7 +257,8 @@ public class MotorGrafico extends PlantillaMotorGrafico {
 		 * Dibuja la pantalla de clasificacion.
 		 */
 		this.mostrar_fondo(g);
-		// TODO
+		g.setColor(Color.white);
+		g.drawString("GAME OVER", 200, 200);
 	}
 
 	private void mostrar_fondo(Graphics g) {
