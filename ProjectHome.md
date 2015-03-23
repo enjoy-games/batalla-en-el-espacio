@@ -1,0 +1,1 @@
+Juego sencillo en applet que imita al galaxian.
